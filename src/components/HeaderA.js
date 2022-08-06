@@ -28,11 +28,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
         padding: 10,
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignContent: 'center',
         width: '100%',
         alignSelf: 'center',
         paddingTop: Constants.statusBarHeight,
+        position: "relative",
+        backgroundColor: 'white'
 
     },
     backimg: {
@@ -40,13 +42,16 @@ const styles = StyleSheet.create({
         height: 35,
         resizeMode: 'contain',
         justifyContent: 'center',
+        // marginTop: 120,
+
     },
 
 
     view1: {
         justifyContent: 'center',
-        width: '50%',
+        width: '30%',
         alignSelf: 'center',
+        // backgroundColor: 'red'
 
     },
     view2: {

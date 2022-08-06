@@ -17,6 +17,8 @@ import Carousel from 'react-native-snap-carousel';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import SearchInput, { createFilter } from 'react-native-search-filter';
 
+import HeaderA from '../../components/HeaderA.js'
+import ComponentA from './componentA.js';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -220,9 +222,7 @@ export default class App extends React.Component {
             selectedIndex: index
         });
     };
-    searchUpdated(data) {
-        this.setState({ searchData: data })
-    }
+
     _renderItem({ item, index }) {
         return (
             <View style={styles.item}>
@@ -268,94 +268,10 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <View style= {{}} >
-                <View style={styles.mview1}>
-                    <View style={styles.mainview}>
-                        <View style={styles.view1}>
-                            <TouchableOpacity  onPress={() => { this.props.navigation.navigate('hs1'); }}>
-                            <Image style={styles.backimg} source={require('../../assets/g6.png')}></Image>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.view2}>
-                            <Image style={styles.homeimg} source={require('../../assets/home.png')}></Image>
-
-                        </View>
-                        <View style={{ flexDirection: 'row', width: '33%' }}>
-
-                            {this.state.danish == true ? <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                                <SearchInput
-                                    onChangeText={(data) => { this.searchUpdated(data) }}
-                                    style={{ paddingLeft: -10 }}
-                                    placeholder="Search"
-                                />
-                                <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center' }} onPress={() => this.setState({ danish: !this.state.danish })}>
-                                    <Image style={styles.i2} source={require('../../assets/sear.png')}></Image>
-                                </TouchableOpacity>
-                            </View>
-                                : <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                                    <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center' }}  onPress={() => { this.props.navigation.navigate('s8'); }}>
-                                        <Image style={styles.i1} source={require('../../assets/g17.png')}></Image>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity style={{ alignSelf: 'center', justifyContent: 'center' }} onPress={() => this.setState({ danish: !this.state.danish })}>
-                                        <Image style={styles.i2} source={require('../../assets/sear.png')}></Image>
-                                    </TouchableOpacity>
-                                </View>
-                            }
-                        </View>
-                    </View>
-                </View>
+            <View style={{}} >
+                <HeaderA />
                 <ScrollView>
-
-                    <View style={{
-                        width: '100%', flexDirection: 'row',
-                        justifyContent: 'center', alignSelf: 'center',
-                        alignItems: 'center', alignContent: 'center',
-                        justifyContent: "space-around"
-                    }}>
-                        <View style={styles.mmainview1}>
-                            <ImageBackground style={styles.mbackimg} source={require('../../assets/imgb2.png')}></ImageBackground>
-                            <View>
-                                <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
-                            </View>
-                        </View>
-                        <View style={styles.mmainview2}>
-                            <ImageBackground style={styles.mbackimg} source={require('../../assets/imgb2.png')}></ImageBackground>
-                            <View>
-                                <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={{
-                        width: '100%', flexDirection: 'row',
-                        justifyContent: 'center', alignSelf: 'center',
-                        alignItems: 'center', alignContent: 'center',
-                        justifyContent: "space-around"
-                    }}>
-                        <View style={styles.mmainview3}>
-                            <ImageBackground style={styles.mbackimg} source={require('../../assets/imgb2.png')}></ImageBackground>
-                            <View>
-                                <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
-                            </View>
-                        </View>
-                        <View style={styles.mmainview4}>
-                            <ImageBackground style={styles.mbackimg} source={require('../../assets/imgb2.png')}></ImageBackground>
-                            <View>
-                                <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.hv1} >
-                        <View style={styles.hv11}>
-                            <Text style={styles.t1}>Best Deals </Text>
-                            {/* <Image style={styles.i11} source={require('../../assets/g16.png')}></Image> */}
-
-                        </View>
-                        <Image style={styles.i12} source={require('../../assets/line1.png')}></Image>
-
-                    </View>
-
-
+                    <ComponentA />
                     <View style={styles.cv}>
                         <Carousel
                             layout={"default"}
@@ -571,12 +487,12 @@ export default class App extends React.Component {
                                                 />
                                             </View>
                                             <TouchableOpacity>
-                                            <View style={{ flexDirection: 'row', justifyContent:'space-between' }}>
-                                                <Text style= {{color:'#DFDFDF', fontSize:10, alignSelf:'center'}}>Visit Store</Text>
-                                              
-                                                <Image style={{ width: 20, height: 30, alignSelf:'center' }} source={require('../../assets/for.png')}></Image>
-                                              
-                                            </View>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                    <Text style={{ color: '#DFDFDF', fontSize: 10, alignSelf: 'center' }}>Visit Store</Text>
+
+                                                    <Image style={{ width: 20, height: 30, alignSelf: 'center' }} source={require('../../assets/for.png')}></Image>
+
+                                                </View>
                                             </TouchableOpacity>
                                         </View>
 
@@ -591,7 +507,7 @@ export default class App extends React.Component {
                         />
                     </View>
                     <View style={styles.hv2}  >
-                      
+
                         <Image style={styles.i12} source={require('../../assets/line1.png')}></Image>
 
                     </View>
@@ -899,7 +815,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '100%',
         marginBottom: 35,
-        marginTop:35
+        marginTop: 35
     },
     i2: {
         width: 50,

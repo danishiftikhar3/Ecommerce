@@ -27,6 +27,7 @@
     "react-native-search-filter": "^0.1.5",
     "react-native-segmented-control-tab": "^4.0.0",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-star-rating": "^1.1.0",
     "react-native-web": "0.17.7",
     "react-star-ratings": "^2.3.0"
   },
