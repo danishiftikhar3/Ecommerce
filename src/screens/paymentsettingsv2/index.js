@@ -4,7 +4,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 
-export default class App extends Component {
+export default class PaymentSettingsV2 extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -122,19 +122,19 @@ export default class App extends Component {
 
                         </View>
 
-                          <View style={{ flexDirection: 'row', width: "100%", alignSelf: 'center', justifyContent: 'center', marginBottom : '20%'}}>
+                        <View style={{ flexDirection: 'row', width: "100%", alignSelf: 'center', justifyContent: 'center', marginBottom: '20%' }}>
                             <TouchableOpacity style={{ width: '35%', marginRight: 25 }} >
                                 <Text style={styles.btn1}>Add New</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity   style={{ width: '35%' }} onPress={() => { this.props.navigation.navigate('paymentsettingssv'); }}>
+                            <TouchableOpacity style={{ width: '35%' }} onPress={() => { this.props.navigation.navigate('paymentsettingssv'); }}>
                                 <Text style={styles.btn2}>Submit</Text>
                             </TouchableOpacity>
 
                         </View>
                     </View>
 
-                  
+
 
 
 
@@ -303,5 +303,5 @@ const styles = StyleSheet.create({
         marginLeft: 45
     },
 
-   
+
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity , Modal} from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native';
 
 import StarRating from 'react-native-star-rating';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -12,8 +12,7 @@ const data = [
         'backgroundcolor': 'white',
         'price': '$28',
         stars: 4,
-
-        'Qty': 0
+        'Qty': 1
     },
     {
         "id": 2,
@@ -22,19 +21,16 @@ const data = [
         'backgroundcolor': 'white',
         'price': '$28',
         stars: 4,
-
-        'Qty': 0
+        'Qty': 1
     },
     {
         "id": 3,
         "name": "Nike's Flex Men",
         'pic': require('../../assets/p5.png'),
-        'backgroundcolor': '#FFBD11',
+        'backgroundcolor': 'white',
         'price': '$28',
         stars: 4,
-
-        'Qty': 0
-
+        'Qty': 1
     },
     {
         "id": 4,
@@ -43,15 +39,22 @@ const data = [
         'backgroundcolor': 'white',
         'price': '$28',
         stars: 4,
-
-        'Qty': 0
+        'Qty': 1
     },
-
+    {
+        "id": 5,
+        "name": "Nike's Flex Men",
+        'pic': require('../../assets/p5.png'),
+        'backgroundcolor': 'white',
+        'price': '$28',
+        stars: 4,
+        'Qty': 1
+    },
 
 ];
 
 
-export default class index extends Component {
+export default class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -67,19 +70,19 @@ export default class index extends Component {
         this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
 
     }
- 
+
     handleBackButtonClick() {
         this.props.navigation.goBack(null);
         return true;
     }
-  
+
     add(num) {
         console.log(num);
         var arr = this.state.data;
 
         let count1 = arr[num].Qty;
         count1 = parseInt(count1) + 1;
-        console.log(count1)
+        // console.log(count1)
         arr[num].Qty = count1;
 
         this.setState({
@@ -158,8 +161,8 @@ export default class index extends Component {
         const { modalVisible, setModalVisible } = this.state;
 
         return (
-            <ScrollView>
-                <View>
+            <View >
+                <View >
                     <View style={styles.mainview}>
                         <View style={styles.view1}>
                             <Image style={styles.backimg} source={require('../../assets/Backarrow.png')}></Image>
@@ -169,7 +172,7 @@ export default class index extends Component {
                             <Text style={styles.txt1}>Bag</Text>
                         </View>
                     </View>
-                    <View>
+                    <View style={{ flexGrow: 1 }}>
                         <FlatList
                             data={data}
                             renderItem={({ item, index }) => (
@@ -227,6 +230,7 @@ export default class index extends Component {
                                 </View>
                             )}
                             keyExtractor={item => item.id}
+                            ListFooterComponent={<View style={{ height: 300 }} />}
                         />
                     </View>
                     <Modal
@@ -252,7 +256,7 @@ export default class index extends Component {
 
                     </Modal>
                 </View>
-            </ScrollView>
+            </View>
         );
     }
 }
@@ -279,15 +283,15 @@ const styles = StyleSheet.create({
         elevation: 5
     },
 
-    v06:{
-        borderBottomColor:'#DFDFDF',
-        borderWidth:1,
-        width:80,
-        height:30,
-        marginTop:10,
-        borderTopColor:'white',
-        borderLeftColor:'white',
-        borderRightColor:'white'
+    v06: {
+        borderBottomColor: '#DFDFDF',
+        borderWidth: 1,
+        width: 80,
+        height: 30,
+        marginTop: 10,
+        borderTopColor: 'white',
+        borderLeftColor: 'white',
+        borderRightColor: 'white'
     },
     mainview: {
         borderWidth: 1,
