@@ -15,63 +15,14 @@ import {
 import StarRating from 'react-native-star-rating';
 import Carousel from 'react-native-snap-carousel';
 import SegmentedControlTab from "react-native-segmented-control-tab";
-import SearchInput, { createFilter } from 'react-native-search-filter';
 
 import HeaderA from '../../components/HeaderA.js'
 import ComponentA from './componentA.js';
+import BestSelling from './BestSelling.js';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const data = [
-    {
-        'id': '01',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-        'price': '$24',
-        stars: 4
 
-
-    },
-    {
-        'id': '02',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-
-        'price': '$24',
-        stars: 4
-
-
-    },
-    {
-        'id': '03',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-
-        'price': '$24',
-        stars: 4
-
-
-    },
-    {
-        'id': '03',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-
-        'price': '$24',
-        stars: 4
-
-    },
-    {
-        'id': '03',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-
-        'price': '$24',
-        stars: 4
-
-
-    },
-]
 const datal = [
     {
         'id': '01',
@@ -100,16 +51,6 @@ const bdata = [
     },
     {
         'id': '02',
-        'name': "Jane Doe",
-        'pic': require('../../assets/boi.png'),
-        stars: 4,
-    }, {
-        'id': '03',
-        'name': "Jane Doe",
-        'pic': require('../../assets/boi.png'),
-        stars: 4,
-    }, {
-        'id': '04',
         'name': "Jane Doe",
         'pic': require('../../assets/boi.png'),
         stars: 4,
@@ -163,7 +104,37 @@ const dataB = [
 
     },
 ]
+const carouselItems = [
+    {
+        title: 'Nike Men Flex',
+        pic: require('../../assets/mproduct1.png'),
+        share: require('../../assets/mshare.png'),
+        heart: require('../../assets/mheart.png'),
+        'price': '$24',
+        stars: 4
 
+    },
+    {
+        title: 'Nike Men Flex',
+        pic: require('../../assets/mproduct1.png'),
+        share: require('../../assets/mshare.png'),
+        heart: require('../../assets/mheart.png'),
+        'price': '$24',
+        stars: 4
+
+
+    },
+    {
+        title: 'Nike Men Flex',
+        pic: require('../../assets/mproduct1.png'),
+        share: require('../../assets/mshare.png'),
+        heart: require('../../assets/mheart.png'),
+        'price': '$24',
+        stars: 4
+
+
+    },
+]
 
 export default class App extends React.Component {
 
@@ -175,37 +146,7 @@ export default class App extends React.Component {
             selectedIndex: 1,
             starCount: 3.5,
             activeIndex: 2,
-            carouselItems: [
-                {
-                    title: 'Nike Men Flex',
-                    pic: require('../../assets/mproduct1.png'),
-                    share: require('../../assets/mshare.png'),
-                    heart: require('../../assets/mheart.png'),
-                    'price': '$24',
-                    stars: 4
 
-                },
-                {
-                    title: 'Nike Men Flex',
-                    pic: require('../../assets/mproduct1.png'),
-                    share: require('../../assets/mshare.png'),
-                    heart: require('../../assets/mheart.png'),
-                    'price': '$24',
-                    stars: 4
-
-
-                },
-                {
-                    title: 'Nike Men Flex',
-                    pic: require('../../assets/mproduct1.png'),
-                    share: require('../../assets/mshare.png'),
-                    heart: require('../../assets/mheart.png'),
-                    'price': '$24',
-                    stars: 4
-
-
-                },
-            ]
         }
     }
     onStarRatingPress(rating) {
@@ -268,7 +209,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <View style={{}} >
+            <View  >
                 <HeaderA />
                 <ScrollView>
                     <ComponentA />
@@ -276,118 +217,16 @@ export default class App extends React.Component {
                         <Carousel
                             layout={"default"}
                             ref={ref => this.carousel = ref}
-                            data={this.state.carouselItems}
+                            data={carouselItems}
                             sliderWidth={screenWidth}
                             sliderHeight={screenWidth}
                             itemWidth={screenWidth - 180}
                             renderItem={this._renderItem}
-                            onSnapToItem={index => this.setState({ activeIndex: index })} />
-                    </View>
-                    <View style={styles.hv1} >
-                        <View style={styles.hv11}>
-                            <Text style={styles.t1}>Best Selling Products </Text>
-                            {/* <Image style={styles.i11} source={require('../../assets/g16.png')}></Image> */}
-
-                        </View>
-                        <Image style={styles.i12} source={require('../../assets/line1.png')}></Image>
-
-                    </View>
-                    <View style={{ marginBottom: 25 }}>
-                        <FlatList
-                            data={data}
-                            horizontal={true}
-                            renderItem={({ item, index }) => (
-                                <View style={styles.view3}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                        <TouchableOpacity>
-                                            <Image style={styles.img3} source={require('../../assets/share.png')}></Image>
-                                        </TouchableOpacity>
-                                        <Image style={styles.img3} source={require('../../assets/heart.png')}></Image>
-
-                                    </View>
-
-                                    <ImageBackground style={styles.img4} source={item.pic}>
-
-
-                                        <View style={styles.view4}>
-                                            <Text style={styles.txt4}>{item.name}</Text>
-                                            <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
-                                                <StarRating
-                                                    disabled={false}
-                                                    maxStars={5}
-                                                    rating={item.stars}
-                                                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                                                    fullStarColor={'orange'}
-                                                    starSize={12}
-                                                    starStyle={{}}
-
-                                                />
-                                            </View>
-
-
-                                        </View>
-                                    </ImageBackground>
-
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Text style={styles.txt3}>{item.price}</Text>
-                                        <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
-
-                                            <Image style={styles.img5} source={require('../../assets/for.png')}></Image>
-                                        </TouchableOpacity>
-                                    </View>
-
-                                </View>
-                            )}
-
-                            keyExtractor={item => item.id}
+                        // onSnapToItem={index => this.setState({ activeIndex: index })}
                         />
                     </View>
 
-                    <View style={styles.hv1} >
-                        <View style={styles.hv11}>
-                            <Text style={styles.t1}>Live Streaming </Text>
-                            <Image style={styles.i11} source={require('../../assets/g16.png')}></Image>
-
-                        </View>
-                        <Image style={styles.i12} source={require('../../assets/line1.png')}></Image>
-
-                    </View>
-                    <View style={styles.flatlist}>
-                        <View style={{ width: '100%' }}>
-                            <FlatList
-                                data={datal}
-                                renderItem={({ item, index }) => (
-
-                                    <View style={styles.fv1}>
-                                        <ImageBackground style={styles.fi1} source={item.pic}>
-
-                                            <View style={styles.fv2}>
-
-                                                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }} >
-                                                    <Text style={styles.ft1}>{item.name}</Text>
-                                                    <Image style={styles.fi3} source={require('../../assets/mheart.png')}></Image>
-
-                                                </View>
-                                                <Text style={styles.ft2}>{item.des}</Text>
-
-                                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 }}>
-                                                    <Image style={styles.fi4} source={require('../../assets/g2.png')}></Image>
-                                                    <Image style={styles.fi3} source={require('../../assets/g3.png')}></Image>
-                                                </View>
-
-                                            </View>
-
-
-                                        </ImageBackground>
-                                    </View>
-
-
-                                )}
-                                numColumns={2}
-                                keyExtractor={item => item.id}
-                            />
-                        </View>
-                    </View>
+                    <BestSelling />
                     <View style={styles.tabview}>
                         <SegmentedControlTab
                             values={['All', 'Women', 'Kids', 'Men', 'Essential']}
@@ -454,7 +293,7 @@ export default class App extends React.Component {
                     </View>
                     <View style={styles.hv2}  >
                         <View style={styles.hv11}>
-                            <Text style={styles.t1}>Best Selling Products </Text>
+                            <Text style={styles.t1}>Best Sellers </Text>
                             {/* <Image style={styles.i11} source={require('../../assets/g16.png')}></Image> */}
 
                         </View>
