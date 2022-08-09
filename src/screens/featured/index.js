@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Alert, ImageBackground, Modal } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Alert, ImageBackground, Modal, ScrollView } from 'react-native';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
 import RangeSlider from 'rn-range-slider';
@@ -54,7 +53,7 @@ const dataB = [
     },
 ]
 
-export default class index extends Component {
+export default class Featured extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -192,17 +191,17 @@ export default class index extends Component {
                                 <View>
                                     <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Filter By Price</Text>
                                     <RangeSlider
-                                         valueType="time"
-                                         gravity={'center'}
-                                         labelStyle={'none'}
-                                         style={{width: '80%', height: 70}}
-                                         min={1}
-                                         max={60}
-                                         selectionColor="#3df"
-                                         blankColor="#f618"
-                                         step={1000 * 60 * 60}
-                                         textFormat="HH:mm"
-                                         onValueChanged={this.handleSliderChange} />
+                                        valueType="time"
+                                        gravity={'center'}
+                                        labelStyle={'none'}
+                                        style={{ width: '80%', height: 70 }}
+                                        min={1}
+                                        max={60}
+                                        selectionColor="#3df"
+                                        blankColor="#f618"
+                                        step={1000 * 60 * 60}
+                                        textFormat="HH:mm"
+                                        onValueChanged={this.handleSliderChange} />
                                     <View style={styles.view7}>
                                         <Text style={{ alignSelf: 'center', fontWeight: 'bold' }}>Size</Text>
                                         <SegmentedControlTab
@@ -372,13 +371,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         paddingLeft: 10
     },
- 
+
     txt5: {
         fontSize: 14,
         color: 'red',
         paddingLeft: 15
     },
-  
+
     centeredView: {
         flex: 1,
         justifyContent: "center",

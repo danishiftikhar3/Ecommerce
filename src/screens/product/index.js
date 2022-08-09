@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ImageBackground, } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, } from 'react-native';
+
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
 
-export default class index extends Component {
+export default class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -94,7 +94,7 @@ export default class index extends Component {
                             }}
                         />
                     </View>
-          
+
 
                 </ScrollView>
                 <View style={styles.footer}>
@@ -114,15 +114,15 @@ export default class index extends Component {
     }
 }
 const styles = StyleSheet.create({
-    footer:{
+    footer: {
         flexDirection: 'row',
-            alignSelf: 'center',
-             justifyContent: 'space-around',
-              width: '100%',
-             position:'absolute',
-              marginBottom:5, 
-             bottom: 0, 
-             //Don't forget fles:1 for main view 
+        alignSelf: 'center',
+        justifyContent: 'space-around',
+        width: '100%',
+        position: 'absolute',
+        marginBottom: 5,
+        bottom: 0,
+        //Don't forget fles:1 for main view 
     },
     mainview: {
         borderWidth: 1,
