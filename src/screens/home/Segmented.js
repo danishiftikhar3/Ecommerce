@@ -8,64 +8,66 @@ import color from '../../../constants/color';
 const all = [
     {
         'id': '01',
-        'name': "Mini Denim Shorts",
+        'title': "Mini Denim Shorts",
         'pic': require('../../images/miniDenimShorts.png'),
         'price': 24,
+        stars: 4
 
     },
     {
         'id': '02',
-        'name': "Nike Air Force 1",
+        'title': "Nike Air Force 1",
         'pic': require('../../images/pants.png'),
-
         'price': 25,
+        stars: 4
 
     },
     {
         'id': '03',
-        'name': "Women Track Suite",
+        'title': "Women Track Suite",
         'pic': require('../../images/womenTrackSuite.png'),
-
         'price': 30,
+        stars: 4
 
     },
     {
         'id': '04',
-        'name': "Leather Backpack",
+        'title': "Leather Backpack",
         'pic': require('../../images/leatherbag.jpg'),
         'price': 150,
+        stars: 4
 
     },
     {
         'id': '05',
-        'name': "Nike Puffer Jacket",
+        'title': "Nike Puffer Jacket",
         'pic': require('../../images/puffer.png'),
-
         'price': 160,
+        stars: 4
 
     },
     {
         'id': '06',
-        'name': "Women Black Attire",
+        'title': "Women Black Attire",
         'pic': require('../../images/blackAttire.png'),
-
         'price': 160,
+        stars: 4
 
     },
     {
         'id': '07',
-        'name': "Women Glasses",
+        'title': "Women Glasses",
         'pic': require('../../images/glasses.png'),
-
         'price': 160,
+        stars: 4
 
     },
     {
         'id': '08',
-        'name': "Kid's Jacket",
+        'title': "Kid's Jacket",
         'pic': require('../../images/kidJacket.webp'),
-
         'price': 160,
+        stars: 4
 
     },
 ]
@@ -147,24 +149,20 @@ export default class Segmented extends Component {
                                     renderItem={({ item, index }) => (
                                         <View style={styles.flatlistView1}>
 
-
                                             <ImageBackground style={styles.img4b} source={item.pic}>
-                                                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-
-                                                    <Image style={styles.img3b} source={require('../../assets/heart.png')}></Image>
-
-                                                </View>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
 
                                                 <View style={styles.view4b}>
-                                                    <Text style={styles.txt4b}>{item.name}</Text>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
                                                     <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
                                                         <StarRating
                                                             disabled={false}
                                                             maxStars={5}
-                                                            rating={this.state.starCount}
-                                                            selectedStar={(rating) => this.onStarRatingPress(rating)}
-                                                            fullStarColor={'orange'}
-                                                            starSize={12}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
                                                             starStyle={{}}
 
                                                         />
@@ -213,6 +211,12 @@ export default class Segmented extends Component {
 }
 
 const styles = StyleSheet.create({
+    heart: {
+        width: 20,
+        height: 25,
+        resizeMode: 'contain',
+        tintColor: color.red
+    },
     flatlistView: {
         marginBottom: 25,
     },

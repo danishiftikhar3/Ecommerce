@@ -30,6 +30,7 @@
     "react-native-simple-radio-button": "^2.7.4",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-star-rating": "^1.1.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-native-web": "0.17.7",
     "react-star-ratings": "^2.3.0",
     "rn-range-slider": "^2.1.1",

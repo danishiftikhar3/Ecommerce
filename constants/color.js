@@ -8,4 +8,5 @@ export default {
     black: '#000000',
     lightBlue: '#DAECFC',
     darkBlue: '#153E73',
+    star: '#FF7D51'
 }
