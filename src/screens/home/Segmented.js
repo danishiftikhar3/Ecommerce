@@ -5,7 +5,7 @@ import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
 
 
-const dataB = [
+const all = [
     {
         'id': '01',
         'name': "Mini Denim Shorts",
@@ -74,10 +74,9 @@ export default class Segmented extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            danish: false,
-            selectedIndex: 1,
-            starCount: 3.5,
-            activeIndex: 2,
+            selectedIndex: 0,
+            selectedIndices: [0],
+            customStyleIndex: 0,
 
         }
     }
@@ -92,14 +91,43 @@ export default class Segmented extends Component {
             selectedIndex: index
         });
     };
+    handleSingleIndexSelect = (index: number) => {
+        this.setState(prevState => ({ ...prevState, selectedIndex: index }))
+    }
+
+    handleMultipleIndexSelect = (index: number) => {
+        const { selectedIndices } = this.state
+
+        if (selectedIndices.includes(index)) {
+            this.setState(prevState => ({
+                ...prevState,
+                selectedIndices: selectedIndices.filter((i) => i !== index),
+            }))
+        } else {
+            this.setState(prevState => ({
+                ...prevState,
+                selectedIndices: [
+                    ...selectedIndices,
+                    index,
+                ],
+            }))
+        }
+    }
+
+    handleCustomIndexSelect = (index: number) => {
+        this.setState(prevState => ({ ...prevState, customStyleIndex: index }))
+    }
+
     render() {
+        const { selectedIndex, selectedIndices, customStyleIndex } = this.state
+
         return (
             <View >
                 <View style={styles.tabview}>
                     <SegmentedControlTab
                         values={['All', 'Women', 'Kids', 'Men', 'Essential']}
-                        selectedIndex={this.state.selectedIndex}
-                        onTabPress={this.handleIndexChange}
+                        selectedIndex={customStyleIndex}
+                        onTabPress={this.handleCustomIndexSelect}
                         tabStyle={styles.tabStyle}
                         activeTabStyle={styles.activeTab}
                         activeTabTextStyle={styles.activeTabText}
@@ -109,54 +137,67 @@ export default class Segmented extends Component {
                             alignSelf: 'center'
                         }}
                     />
-                </View>
-                <View style={styles.flatlistView}>
-                    <FlatList
-                        data={dataB}
-                        renderItem={({ item, index }) => (
-                            <View style={styles.flatlistView1}>
+
+                    {customStyleIndex === 0
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={all}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
 
 
-                                <ImageBackground style={styles.img4b} source={item.pic}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
 
-                                        <Image style={styles.img3b} source={require('../../assets/heart.png')}></Image>
+                                                    <Image style={styles.img3b} source={require('../../assets/heart.png')}></Image>
 
-                                    </View>
+                                                </View>
 
-                                    <View style={styles.view4b}>
-                                        <Text style={styles.txt4b}>{item.name}</Text>
-                                        <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
-                                            <StarRating
-                                                disabled={false}
-                                                maxStars={5}
-                                                rating={this.state.starCount}
-                                                selectedStar={(rating) => this.onStarRatingPress(rating)}
-                                                fullStarColor={'orange'}
-                                                starSize={12}
-                                                starStyle={{}}
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.name}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={this.state.starCount}
+                                                            selectedStar={(rating) => this.onStarRatingPress(rating)}
+                                                            fullStarColor={'orange'}
+                                                            starSize={12}
+                                                            starStyle={{}}
 
-                                            />
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
                                         </View>
-
-
-                                    </View>
-                                </ImageBackground>
-
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Text style={styles.txt3b}>${item.price}</Text>
-                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
-
-                                        <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
-                                    </TouchableOpacity>
-                                </View>
-
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
                             </View>
-                        )}
-                        numColumns={2}
-                        keyExtractor={item => item.id}
-                    />
+
+                        </View>
+                    }
+
+
+                    {customStyleIndex === 1
+                        && <Text style={styles.tabContent}> Tab two</Text>}
+
                 </View>
+
             </View>
         )
     }
