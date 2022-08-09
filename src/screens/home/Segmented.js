@@ -196,6 +196,15 @@ export default class Segmented extends Component {
                     {customStyleIndex === 1
                         && <Text style={styles.tabContent}> Tab two</Text>}
 
+                    {customStyleIndex === 2
+                        && <Text style={styles.tabContent}> Tab two</Text>}
+
+                    {customStyleIndex === 3
+                        && <Text style={styles.tabContent}> Tab two</Text>}
+
+                    {customStyleIndex === 4
+                        && <Text style={styles.tabContent}> Tab two</Text>}
+
                 </View>
 
             </View>

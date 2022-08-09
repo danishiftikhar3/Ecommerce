@@ -14,7 +14,7 @@ import Product from './src/screens/product'
 
 
 import Featured from './src/screens/featured'
-import SegmentedView from './src/screens/home/SegmentedView'
+
 
 
 
@@ -22,7 +22,7 @@ export default class App extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Segmented />
+        <Home />
       </SafeAreaView>
     )
   }

@@ -72,15 +72,7 @@ export default class BestSelling extends Component {
     render() {
         return (
             <View>
-                <View style={styles.hv1} >
-                    <View style={styles.hv11}>
-                        <Text style={styles.t1}>Best Selling Products </Text>
-                        {/* <Image style={styles.i11} source={require('../../assets/g16.png')}></Image> */}
 
-                    </View>
-                    <Image style={styles.i12} source={require('../../assets/line1.png')}></Image>
-
-                </View>
                 <View style={{ marginBottom: 25 }}>
                     <FlatList
                         data={data}

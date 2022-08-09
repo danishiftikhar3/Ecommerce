@@ -3,6 +3,7 @@ import {
     View, Text, Image, StyleSheet, SafeAreaView, TouchableOpacity
 } from 'react-native';
 import Constants from "expo-constants";
+import color from '../../constants/color';
 
 
 function HeaderA(props) {
@@ -10,11 +11,11 @@ function HeaderA(props) {
         <SafeAreaView style={styles.Screen}>
             <View style={styles.view1}>
                 <TouchableOpacity onPress={() => { this.props.navigation.navigate('hs1'); }}>
-                    <Image style={styles.backimg} source={require('../assets/g6.png')}></Image>
+                    <Image style={styles.backimg} source={require('../images/drawerButton.png')}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.view2}>
-                <Image style={styles.homeimg} source={require('../assets/home.png')}></Image>
+                <Image style={styles.homeimg} source={require('../images/logo.png')}></Image>
 
             </View>
         </SafeAreaView>
@@ -26,7 +27,7 @@ export default HeaderA;
 const styles = StyleSheet.create({
     Screen: {
         flexDirection: 'row',
-        height: 50,
+        height: 70,
         padding: 10,
         justifyContent: 'space-around',
         alignContent: 'center',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingTop: Constants.statusBarHeight,
         position: "relative",
-        backgroundColor: 'white'
+        backgroundColor: color.header
 
     },
     backimg: {
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
 
     },
     view2: {
+        justifyContent: 'center',
 
         width: '50%',
 

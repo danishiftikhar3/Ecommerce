@@ -7,6 +7,7 @@ import BestSelling from './BestSelling.js';
 import BestSellers from './BestSellers.js';
 import Segmented from './Segmented.js';
 import BestDeals from './BestDeals.js';
+import Divider from './Divider.js';
 
 export default class Home extends React.Component {
 
@@ -24,9 +25,13 @@ export default class Home extends React.Component {
                 <HeaderA />
                 <ScrollView>
                     <ComponentA />
+                    <Divider title='Best Deals' />
                     <BestDeals />
+                    <Divider title='Best Selling Products' />
                     <BestSelling />
+                    <Divider title='Featured' />
                     <Segmented />
+                    <Divider title='Best Sellers' />
                     <BestSellers />
                 </ScrollView>
             </View>
