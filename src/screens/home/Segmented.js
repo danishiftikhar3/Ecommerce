@@ -2,53 +2,70 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, Image, FlatList, TouchableOpacity, ImageBackground } from 'react-native'
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
+import color from '../../../constants/color';
 
 
 const dataB = [
     {
         'id': '01',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-        'price': '$24',
+        'name': "Mini Denim Shorts",
+        'pic': require('../../images/miniDenimShorts.png'),
+        'price': 24,
 
     },
     {
         'id': '02',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
+        'name': "Nike Air Force 1",
+        'pic': require('../../images/pants.png'),
 
-        'price': '$24',
+        'price': 25,
 
     },
     {
         'id': '03',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
+        'name': "Women Track Suite",
+        'pic': require('../../images/womenTrackSuite.png'),
 
-        'price': '$24',
+        'price': 30,
 
     },
     {
         'id': '04',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p61.png'),
-        'price': '$24',
+        'name': "Leather Backpack",
+        'pic': require('../../images/leatherbag.jpg'),
+        'price': 150,
 
     },
     {
         'id': '05',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
+        'name': "Nike Puffer Jacket",
+        'pic': require('../../images/puffer.png'),
 
-        'price': '$24',
+        'price': 160,
 
     },
     {
         'id': '06',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
+        'name': "Women Black Attire",
+        'pic': require('../../images/blackAttire.png'),
 
-        'price': '$24',
+        'price': 160,
+
+    },
+    {
+        'id': '07',
+        'name': "Women Glasses",
+        'pic': require('../../images/glasses.png'),
+
+        'price': 160,
+
+    },
+    {
+        'id': '08',
+        'name': "Kid's Jacket",
+        'pic': require('../../images/kidJacket.webp'),
+
+        'price': 160,
 
     },
 ]
@@ -77,37 +94,35 @@ export default class Segmented extends Component {
     };
     render() {
         return (
-            <View>
+            <View >
                 <View style={styles.tabview}>
                     <SegmentedControlTab
                         values={['All', 'Women', 'Kids', 'Men', 'Essential']}
                         selectedIndex={this.state.selectedIndex}
                         onTabPress={this.handleIndexChange}
-                        tabStyle={styles.tabbar}
-                        activeTabStyle={styles.tabbar1}
-                        activeTabTextStyle={styles.tabbartxta}
-                        tabTextStyle={styles.tabbartxt}
+                        tabStyle={styles.tabStyle}
+                        activeTabStyle={styles.activeTab}
+                        activeTabTextStyle={styles.activeTabText}
+                        tabTextStyle={styles.tabTextStyle}
                         tabsContainerStyle={{
-                            justifyContent: 'space-around', width: '80%',
+                            justifyContent: 'space-around', width: '100%',
                             alignSelf: 'center'
                         }}
                     />
                 </View>
-                <View style={{ marginBottom: 25 }}>
+                <View style={styles.flatlistView}>
                     <FlatList
                         data={dataB}
                         renderItem={({ item, index }) => (
-                            <View style={styles.view3b}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                    <TouchableOpacity>
-                                        <Image style={styles.img3b} source={require('../../assets/share.png')}></Image>
-                                    </TouchableOpacity>
-                                    <Image style={styles.img3b} source={require('../../assets/heart.png')}></Image>
+                            <View style={styles.flatlistView1}>
 
-                                </View>
 
                                 <ImageBackground style={styles.img4b} source={item.pic}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
 
+                                        <Image style={styles.img3b} source={require('../../assets/heart.png')}></Image>
+
+                                    </View>
 
                                     <View style={styles.view4b}>
                                         <Text style={styles.txt4b}>{item.name}</Text>
@@ -129,7 +144,7 @@ export default class Segmented extends Component {
                                 </ImageBackground>
 
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Text style={styles.txt3b}>{item.price}</Text>
+                                    <Text style={styles.txt3b}>${item.price}</Text>
                                     <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
 
                                         <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
@@ -148,34 +163,32 @@ export default class Segmented extends Component {
 }
 
 const styles = StyleSheet.create({
-    tabbar1: {
-        borderColor: '#1397d5',
+    flatlistView: {
+        marginBottom: 25,
+    },
+    tabStyle: {
+        borderColor: color.white
+    },
+    activeTab: {
         borderWidth: 1,
-        backgroundColor: 'white',
-        // borderLeftColor: '#1397d5',
-        shadowColor: "#1397d5",
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 0.51,
-        shadowRadius: 13.16,
+        backgroundColor: color.lightBlue,
         flex: 1,
         elevation: 20,
+        borderRadius: 8
     },
-    tabbartxta: {
-        color: '#1397d5',
+    activeTabText: {
+        color: color.black,
         fontWeight: 'bold'
     },
-    tabbartxt: {
-        color: 'black'
+    tabTextStyle: {
+        color: color.black
     },
-    view3b: {
+    flatlistView1: {
         // width: '70%',
         alignSelf: 'center',
-        borderColor: '#1397d5',
+        borderColor: color.border,
         borderWidth: 1,
-        backgroundColor: 'white',
+        backgroundColor: color.white,
         borderRadius: 15,
         flex: 2,
         elevation: 8,
@@ -202,10 +215,11 @@ const styles = StyleSheet.create({
     },
     img4b: {
         width: 150,
-        height: 200,
+        height: 220,
         resizeMode: 'contain',
         alignSelf: 'center',
-        marginTop: -40
+        // marginTop: -40,
+        flex: 1
 
     },
     view4b: {
@@ -217,6 +231,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '70%',
         fontWeight: 'bold',
-        color: '#153E73'
+        color: color.darkBlue,
     },
 })
