@@ -3,74 +3,35 @@ import { Text, StyleSheet, View, Image, FlatList, TouchableOpacity, ImageBackgro
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
+import data from '../../../data/data';
 
 
-const all = [
-    {
-        'id': '01',
-        'title': "Mini Denim Shorts",
-        'pic': require('../../images/miniDenimShorts.png'),
-        'price': 24,
-        stars: 4
 
-    },
-    {
-        'id': '02',
-        'title': "Nike Air Force 1",
-        'pic': require('../../images/pants.png'),
-        'price': 25,
-        stars: 4
 
-    },
-    {
-        'id': '03',
-        'title': "Women Track Suite",
-        'pic': require('../../images/womenTrackSuite.png'),
-        'price': 30,
-        stars: 4
 
-    },
-    {
-        'id': '04',
-        'title': "Leather Backpack",
-        'pic': require('../../images/leatherbag.jpg'),
-        'price': 150,
-        stars: 4
+var womenData = data.filter(function (el) {
+    return el.category === 'women';
+}
+);
 
-    },
-    {
-        'id': '05',
-        'title': "Nike Puffer Jacket",
-        'pic': require('../../images/puffer.png'),
-        'price': 160,
-        stars: 4
+var kidsData = data.filter(function (el) {
+    return el.category === 'kids';
+}
+);
 
-    },
-    {
-        'id': '06',
-        'title': "Women Black Attire",
-        'pic': require('../../images/blackAttire.png'),
-        'price': 160,
-        stars: 4
+var menData = data.filter(function (el) {
+    return el.category === 'men';
+}
+);
 
-    },
-    {
-        'id': '07',
-        'title': "Women Glasses",
-        'pic': require('../../images/glasses.png'),
-        'price': 160,
-        stars: 4
+var essData = data.filter(function (el) {
+    return el.essential;
+}
+);
 
-    },
-    {
-        'id': '08',
-        'title': "Kid's Jacket",
-        'pic': require('../../images/kidJacket.webp'),
-        'price': 160,
-        stars: 4
 
-    },
-]
+
+
 export default class Segmented extends Component {
 
     constructor(props) {
@@ -145,7 +106,203 @@ export default class Segmented extends Component {
                         <View>
                             <View style={styles.flatlistView}>
                                 <FlatList
-                                    data={all}
+                                    data={data}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 1
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={womenData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 2
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={kidsData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 3
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={menData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 4
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={essData}
                                     renderItem={({ item, index }) => (
                                         <View style={styles.flatlistView1}>
 
@@ -191,17 +348,11 @@ export default class Segmented extends Component {
                     }
 
 
-                    {customStyleIndex === 1
-                        && <Text style={styles.tabContent}> Tab two</Text>}
 
-                    {customStyleIndex === 2
-                        && <Text style={styles.tabContent}> Tab two</Text>}
 
-                    {customStyleIndex === 3
-                        && <Text style={styles.tabContent}> Tab two</Text>}
 
-                    {customStyleIndex === 4
-                        && <Text style={styles.tabContent}> Tab two</Text>}
+
+
 
                 </View>
 

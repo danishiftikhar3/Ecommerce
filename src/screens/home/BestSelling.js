@@ -2,76 +2,18 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, Image, FlatList, ImageBackground, TouchableOpacity } from 'react-native'
 import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
+import data from '../../../data/data';
+
 
 // import Segmented from './Segmented';
 
 
-const data = [
-    {
-        'id': '01',
-        'title': "Mini Denim Shorts",
-        'pic': require('../../images/miniDenimShorts.png'),
-        'price': 24,
-        stars: 4
+var newData = data.filter(function (el) {
+    return el.bestSeller;
+}
 
-    },
-    {
-        'id': '02',
-        'title': "Nike Air Force 1",
-        'pic': require('../../images/pants.png'),
-        'price': 25,
-        stars: 4
+);
 
-    },
-    {
-        'id': '03',
-        'title': "Women Track Suite",
-        'pic': require('../../images/womenTrackSuite.png'),
-        'price': 30,
-        stars: 4
-
-    },
-    {
-        'id': '04',
-        'title': "Leather Backpack",
-        'pic': require('../../images/leatherbag.jpg'),
-        'price': 150,
-        stars: 4
-
-    },
-    {
-        'id': '05',
-        'title': "Nike Puffer Jacket",
-        'pic': require('../../images/puffer.png'),
-        'price': 160,
-        stars: 4
-
-    },
-    {
-        'id': '06',
-        'title': "Women Black Attire",
-        'pic': require('../../images/blackAttire.png'),
-        'price': 160,
-        stars: 4
-
-    },
-    {
-        'id': '07',
-        'title': "Women Glasses",
-        'pic': require('../../images/glasses.png'),
-        'price': 160,
-        stars: 4
-
-    },
-    {
-        'id': '08',
-        'title': "Kid's Jacket",
-        'pic': require('../../images/kidJacket.webp'),
-        'price': 160,
-        stars: 4
-
-    },
-]
 
 export default class BestSelling extends Component {
     constructor(props) {
@@ -93,7 +35,7 @@ export default class BestSelling extends Component {
 
                 <View style={{ marginBottom: 25 }}>
                     <FlatList
-                        data={data}
+                        data={newData}
                         horizontal={true}
                         renderItem={({ item, index }) => (
                             <View style={styles.flatlistView1}>

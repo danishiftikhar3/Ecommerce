@@ -2,37 +2,18 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, Image, TouchableOpacity, Dimensions } from 'react-native'
 import Carousel from 'react-native-snap-carousel';
 import StarRating from 'react-native-star-rating';
+
 import color from '../../../constants/color';
+import data from '../../../data/data';
 
 const { width: screenWidth } = Dimensions.get('window');
 
+var carouselItems = data.filter(function (el) {
+    return el.bestDeal;
+}
 
-const carouselItems = [
-    {
-        'id': '01',
-        'title': "Mini Denim Shorts",
-        'pic': require('../../images/miniDenimShorts.png'),
-        'price': 24,
-        stars: 4
+);
 
-    },
-    {
-        'id': '02',
-        'title': "Nike Air Force 1",
-        'pic': require('../../images/pants.png'),
-        'price': 25,
-        stars: 4
-
-    },
-    {
-        'id': '03',
-        'title': "Women Track Suite",
-        'pic': require('../../images/womenTrackSuite.png'),
-        'price': 30,
-        stars: 4
-
-    },
-]
 export default class BestDeals extends Component {
 
     render() {
