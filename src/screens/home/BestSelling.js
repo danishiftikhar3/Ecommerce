@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, Image, FlatList, ImageBackground, TouchableOpac
 import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
 import data from '../../../data/data';
+import { useNavigation } from '@react-navigation/native';
 
 
 // import Segmented from './Segmented';
@@ -15,76 +16,62 @@ var newData = data.filter(function (el) {
 );
 
 
-export default class BestSelling extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            starCount: 3.5,
+function BestSelling() {
+    const navigation = useNavigation();
+
+    return (
+        <View>
+
+            <View style={{ marginBottom: 25 }}>
+                <FlatList
+                    data={newData}
+                    horizontal={true}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.flatlistView1}>
 
 
-        }
-    }
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating
-        });
-    }
-    render() {
-        return (
-            <View>
-
-                <View style={{ marginBottom: 25 }}>
-                    <FlatList
-                        data={newData}
-                        horizontal={true}
-                        renderItem={({ item, index }) => (
-                            <View style={styles.flatlistView1}>
-
-
-                                <ImageBackground style={styles.img4b} source={item.pic}>
-                                    <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
-
-                                        <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
-
-
-                                    </TouchableOpacity>
-
-                                    <View style={styles.view4b}>
-                                        <Text style={styles.txt4b}>{item.title}</Text>
-                                        <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
-                                            <StarRating
-                                                disabled={false}
-                                                maxStars={5}
-                                                rating={item.stars}
-                                                fullStarColor={color.star}
-                                                starSize={15}
-                                                starStyle={{}}
-
-                                            />
-                                        </View>
-
-
-                                    </View>
-                                </ImageBackground>
-
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Text style={styles.txt3b}>${item.price}</Text>
-                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
-
-                                        <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
-                                    </TouchableOpacity>
+                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
                                 </View>
 
-                            </View>
-                        )}
+                                <View style={styles.view4b}>
+                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                        <StarRating
+                                            disabled={false}
+                                            maxStars={5}
+                                            rating={item.stars}
+                                            fullStarColor={color.star}
+                                            starSize={15}
+                                            starStyle={{}}
 
-                        keyExtractor={item => item.id}
-                    />
-                </View>
+                                        />
+                                    </View>
+
+
+                                </View>
+                            </ImageBackground>
+
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={styles.txt3b}>${item.price}</Text>
+                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                </TouchableOpacity>
+                            </View>
+
+                        </View>
+                    )}
+
+                    keyExtractor={item => item.id}
+                />
             </View>
-        )
-    }
+        </View>
+    );
 }
+export default BestSelling;
+
 
 const styles = StyleSheet.create({
     heart: {

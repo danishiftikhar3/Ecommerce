@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, Text, Dimensions, StyleSheet, ScrollView, } from 'react-native';
+import { StyleSheet, ScrollView, SafeAreaView, } from 'react-native';
+import Constants from "expo-constants";
 
 import HeaderA from '../../components/HeaderA.js'
 import ComponentA from './componentA.js';
@@ -21,7 +22,7 @@ export default class Home extends React.Component {
 
     render() {
         return (
-            <View  >
+            <SafeAreaView style={styles.screen}  >
                 <HeaderA />
                 <ScrollView>
                     <ComponentA />
@@ -34,10 +35,13 @@ export default class Home extends React.Component {
                     <Divider title='Best Sellers' />
                     <BestSellers />
                 </ScrollView>
-            </View>
+            </SafeAreaView>
         );
     }
 }
 const styles = StyleSheet.create({
+    screen: {
+        paddingTop: Constants.statusBarHeight,
 
+    }
 });

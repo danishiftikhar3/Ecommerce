@@ -1,156 +1,100 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, FlatList } from 'react-native';
 
-import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
+import HeaderA from '../../components/HeaderA';
 
-export default class Product extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedIndex: 1,
-            starCount: 3.5
-        };
-    }
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating
-        });
-    }
-    handleIndexChange = index => {
-        this.setState({
-            ...this.state,
-            selectedIndex: index
-        });
-    };
-    render() {
-        return (
+import data from '../../../data/data';
+import color from '../../../constants/color';
 
-            <View style={{ flex: 1 }}>
-                <ScrollView>
-                    <View style={styles.mainview}>
-                        <TouchableOpacity style={styles.view1}>
-                            <View style={styles.view1}>
-                                <Image style={styles.backimg} source={require('../../assets/Backarrow.png')}></Image>
+// import { useNavigation } from '@react-navigation/native';
+
+
+const starCount = 4.5
+
+function Product({ route, navigation }) {
+    const { itemID } = route.params;
+
+    var dataA = data.filter(function (el) {
+        return el.id === itemID;
+
+    });
+    // console.log(dataA)
+
+    return (
+
+        <SafeAreaView style={{ height: '100%', }}>
+            <HeaderA />
+            <View style={styles.flatlistView}>
+                <FlatList
+                    data={dataA}
+                    renderItem={({ item, index }) => (
+                        <View>
+                            <View style={styles.view3}>
+                                <Image resizeMode='contain' style={styles.img2} source={item.pic}></Image>
+
                             </View>
-                        </TouchableOpacity>
-                        <View style={styles.view2}>
-                            <Image style={styles.homeimg} source={require('../../assets/home.png')}></Image>
-                            {/* <Text style={styles.txt1}>Bag</Text> */}
-                        </View>
-                    </View>
-                    <View style={styles.view3}>
-                        <Image resizeMode='contain' style={styles.img2} source={require('../../assets/pp.png')}></Image>
-                        <View style={{ marginTop: 50, marginLeft: -6 }}>
-                            <TouchableOpacity>
-                                <Image style={styles.colimg} source={require('../../assets/e1.png')}></Image>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <Image style={styles.colimg} source={require('../../assets/e2.png')}></Image>
-                            </TouchableOpacity><TouchableOpacity>
-                                <Image style={styles.colimg} source={require('../../assets/e3.png')}></Image>
-                            </TouchableOpacity><TouchableOpacity>
-                                <Image style={styles.colimg} source={require('../../assets/e4.png')}></Image>
-                            </TouchableOpacity>
+                            <View style={styles.view4}>
+                                <Text style={styles.txt3} >{item.title}</Text>
+                                <Text style={styles.txt2}>${item.price}</Text>
+                            </View>
+                            <View style={{
+                                width: '10%', margin: 10, resizeMode: 'contain', alignSelf: 'center',
+                                marginTop: 10, flexDirection: 'row', justifyContent: 'center'
+                            }}>
 
-                        </View>
-                    </View>
-                    <View style={styles.view4}>
-                        <Text style={styles.txt2}>$ 120.58</Text>
-                        <Text style={styles.txt3} >Nike's Men Flex</Text>
-                    </View>
-                    <View style={{
-                        width: '10%', marginTop: 4, resizeMode: 'contain', alignSelf: 'center',
-                        marginTop: 10, flexDirection: 'row', justifyContent: 'center'
-                    }}>
+                                <StarRating
+                                    disabled={false}
+                                    maxStars={5}
+                                    rating={item.stars}
+                                    fullStarColor={color.star}
+                                    starSize={18}
+                                    starStyle={{ marginLeft: 3 }}
 
-                        <StarRating
-                            disabled={false}
-                            maxStars={5}
-                            rating={this.state.starCount}
-                            selectedStar={(rating) => this.onStarRatingPress(rating)}
-                            fullStarColor={'orange'}
-                            starSize={14}
-                            starStyle={{ marginLeft: 3 }}
+                                />
 
-                        />
-                        <View style={{ marginTop: -4 }}>
-                            <Text style={{ alignSelf: 'center', }}>  (35)</Text>
-                        </View>
-                    </View>
-                    <View style={styles.view7}>
-                        <Text style={{ alignSelf: 'center', fontWeight: 'bold' }}>Size</Text>
-                        <SegmentedControlTab
-                            values={['L', "M", "S", "XL", 'XS', 'XXL', 'XXS']}
-                            selectedIndex={this.state.selectedIndex}
-                            onTabPress={this.handleIndexChange}
-                            tabStyle={styles.tabbar}
-                            activeTabStyle={styles.tabbar1}
-                            activeTabTextStyle={styles.tabbartxta}
-                            tabTextStyle={styles.tabbartxt}
-                            tabsContainerStyle={{
-                                justifyContent: 'space-around', width: '80%',
-                                alignSelf: 'center',
-                            }}
-                        />
-                    </View>
+                            </View>
 
 
-                </ScrollView>
-                <View style={styles.footer}>
-                    <TouchableOpacity style={styles.view5} onPress={() => { this.props.navigation.navigate('cart'); }}>
-                        <View >
-                            <Text style={styles.txt4}>Add to Bag</Text>
+
+                            <View style={styles.footer}>
+                                <TouchableOpacity style={styles.view5} onPress={() => { this.props.navigation.navigate('cart'); }}>
+                                    <View >
+                                        <Text style={styles.txt4}>Add to Bag</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.view6} onPress={() => { this.props.navigation.navigate('wishlist'); }}>
+                                    <View >
+                                        <Text style={styles.txt5}>Add to Wishlist</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.view6} onPress={() => { this.props.navigation.navigate('wishlist'); }}>
-                        <View >
-                            <Text style={styles.txt5}>Add to Wishlist</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+                    )}
+                    numColumns={2}
+                    keyExtractor={item => item.id}
+                />
             </View>
-        );
-    }
+            <ScrollView style={{ flexGrow: 1 }}>
+
+
+            </ScrollView>
+
+        </SafeAreaView>
+    );
 }
+export default Product;
+
 const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
-        alignSelf: 'center',
+        // alignSelf: 'baseline',
         justifyContent: 'space-around',
         width: '100%',
-        position: 'absolute',
-        marginBottom: 5,
-        bottom: 0,
-        //Don't forget fles:1 for main view 
-    },
-    mainview: {
-        borderWidth: 1,
-        flexDirection: 'row',
-        height: 70
-    },
-    backimg: {
-        width: 50,
-        height: 50,
-        resizeMode: 'contain',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginLeft: 15
+
 
     },
-    homeimg: {
-        width: 50,
-        height: 40,
-        resizeMode: 'contain',
-        alignSelf: 'center'
-    },
-    colimg: {
-        width: 40,
-        height: 30,
-        resizeMode: 'contain',
-        alignSelf: 'center',
-        marginTop: 20
-    },
+
     view1: {
         width: '45%'
     },
@@ -158,21 +102,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row'
     },
-    txt1: {
-        alignSelf: 'center',
-        fontSize: 30
-    },
     view2: {
         justifyContent: 'center',
         flexDirection: 'row'
     },
-    txt1: {
-        alignSelf: 'center',
-        fontSize: 22,
-        fontFamily: 'CarosSoft',
 
-
-    },
     img1: {
         width: 50,
         height: 25,
@@ -182,9 +116,9 @@ const styles = StyleSheet.create({
     view3: {
         width: '60%',
         alignSelf: 'center',
-        borderColor: '#1397d5',
+        borderColor: color.border,
         borderWidth: 1,
-        backgroundColor: 'white',
+        backgroundColor: color.background,
         borderRadius: 15,
         flexDirection: 'row',
         elevation: 8,
@@ -203,40 +137,20 @@ const styles = StyleSheet.create({
     txt2: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#153E73',
-        textAlign: 'center'
+        color: color.darkBlue,
+        textAlign: 'center',
+        marginTop: 10,
+
     },
     txt3: {
-        fontSize: 18,
-        textAlign: 'center',
-        marginTop: 10
-    },
-    tabbar: {
-        borderWidth: 0,
-        borderColor: '#1397d5',
-
-    },
-    tabbar1: {
-        borderColor: '#1397d5',
-        borderWidth: 1,
-        backgroundColor: 'white',
-        borderTopEndRadius: 5,
-        borderBottomEndRadius: 5,
-        borderTopStartRadius: 5,
-        borderBottomStartRadius: 5,
-        borderLeftColor: '#1397d5',
-
-        elevation: 8,
-    },
-    tabbartxt: {
-        color: '#1397d5'
-    },
-    tabbartxta: {
-        color: '#1397d5'
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: color.darkBlue,
+        textAlign: 'center'
     },
 
     view5: {
-        backgroundColor: '#1397d5',
+        backgroundColor: color.header,
         borderRadius: 10,
         height: 55,
         width: '45%',
@@ -244,32 +158,26 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     view6: {
-        backgroundColor: 'white',
+        backgroundColor: color.white,
         borderRadius: 10,
         height: 55,
         width: '45%',
         justifyContent: 'center',
         marginTop: 15,
-        borderColor: '#1397d5',
+        borderColor: color.border,
         borderWidth: 1
     },
     txt4: {
-        color: 'white',
+        color: color.white,
         alignSelf: 'center',
-        fontSize: 18
+        fontSize: 18,
+        fontWeight: 'bold'
     },
     txt5: {
-        color: '#1397d5',
+        color: color.darkBlue,
         alignSelf: 'center',
         fontSize: 17
 
     },
-    view7: {
-        alignSelf: 'center',
-        justifyContent: 'space-around',
-        width: '80%',
-        height: 60,
-        flexDirection: 'row',
-        marginTop: 20
-    },
+
 });

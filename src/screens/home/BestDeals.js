@@ -5,6 +5,8 @@ import StarRating from 'react-native-star-rating';
 
 import color from '../../../constants/color';
 import data from '../../../data/data';
+import { useNavigation } from '@react-navigation/native';
+
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -14,64 +16,65 @@ var carouselItems = data.filter(function (el) {
 
 );
 
-export default class BestDeals extends Component {
 
-    render() {
-        return (
-            <View>
-                <View style={styles.cv}>
-                    <Carousel
-                        layout={"default"}
-                        // ref={ref => this.carousel = ref}
-                        data={carouselItems}
-                        sliderWidth={screenWidth}
-                        sliderHeight={screenWidth}
-                        itemWidth={screenWidth - 180}
-                        slideStyle={{ flex: 1 }}
-                        renderItem={({ item, index }) => (
-                            <View style={styles.item}>
-                                <View style={{}}>
-                                    <TouchableOpacity style={{ flexDirection: "row", justifyContent: 'flex-end', margin: 10 }}>
-                                        <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+function BestDeals() {
+    const navigation = useNavigation();
 
-                                    </TouchableOpacity>
+    return (
+        <View>
+            <View style={styles.cv}>
+                <Carousel
+                    layout={"default"}
+                    // ref={ref => this.carousel = ref}
+                    data={carouselItems}
+                    sliderWidth={screenWidth}
+                    sliderHeight={screenWidth}
+                    itemWidth={screenWidth - 180}
+                    slideStyle={{ flex: 1 }}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.item}>
+                            <View style={{}}>
+                                <TouchableOpacity style={{ flexDirection: "row", justifyContent: 'flex-end', margin: 10 }}>
+                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
 
-                                    <TouchableOpacity >
-                                        <Image source={item.pic} style={styles.img1}></Image>
-                                    </TouchableOpacity>
+                                </TouchableOpacity>
 
+                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })} >
+                                    <Image source={item.pic} style={styles.img1}></Image>
+                                </TouchableOpacity>
 
-                                </View>
-                                <Text style={styles.title}>
-                                    {item.title}
-                                </Text>
-                                <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 25 }}>
-                                    <StarRating
-                                        disabled={false}
-                                        maxStars={5}
-                                        rating={item.stars}
-                                        fullStarColor={color.star}
-                                        starSize={15}
-                                        starStyle={{}}
-
-                                    />
-                                </View>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10, marginBottom: 10 }}>
-                                    <Text style={styles.txt3}>${item.price}</Text>
-                                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
-
-                                        <Image style={styles.img5} source={require('../../assets/for.png')}></Image>
-                                    </TouchableOpacity>
-                                </View>
 
                             </View>
-                        )}
-                    />
-                </View>
+                            <Text style={styles.title}>
+                                {item.title}
+                            </Text>
+                            <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 25 }}>
+                                <StarRating
+                                    disabled={false}
+                                    maxStars={5}
+                                    rating={item.stars}
+                                    fullStarColor={color.star}
+                                    starSize={15}
+                                    starStyle={{}}
+
+                                />
+                            </View>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10, marginBottom: 10 }}>
+                                <Text style={styles.txt3}>${item.price}</Text>
+                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                    <Image style={styles.img5} source={require('../../assets/for.png')}></Image>
+                                </TouchableOpacity>
+                            </View>
+
+                        </View>
+                    )}
+                />
             </View>
-        )
-    }
+        </View>
+    );
 }
+export default BestDeals;
 
 const styles = StyleSheet.create({
     heart: {

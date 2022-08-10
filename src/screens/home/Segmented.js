@@ -4,6 +4,7 @@ import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
 import data from '../../../data/data';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -32,7 +33,7 @@ var essData = data.filter(function (el) {
 
 
 
-export default class Segmented extends Component {
+class Segmented extends Component {
 
     constructor(props) {
         super(props);
@@ -43,39 +44,7 @@ export default class Segmented extends Component {
 
         }
     }
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating
-        });
-    }
-    handleIndexChange = index => {
-        this.setState({
-            ...this.state,
-            selectedIndex: index
-        });
-    };
-    handleSingleIndexSelect = (index: number) => {
-        this.setState(prevState => ({ ...prevState, selectedIndex: index }))
-    }
 
-    handleMultipleIndexSelect = (index: number) => {
-        const { selectedIndices } = this.state
-
-        if (selectedIndices.includes(index)) {
-            this.setState(prevState => ({
-                ...prevState,
-                selectedIndices: selectedIndices.filter((i) => i !== index),
-            }))
-        } else {
-            this.setState(prevState => ({
-                ...prevState,
-                selectedIndices: [
-                    ...selectedIndices,
-                    index,
-                ],
-            }))
-        }
-    }
 
     handleCustomIndexSelect = (index: number) => {
         this.setState(prevState => ({ ...prevState, customStyleIndex: index }))
@@ -83,6 +52,7 @@ export default class Segmented extends Component {
 
     render() {
         const { selectedIndex, selectedIndices, customStyleIndex } = this.state
+        const { navigation } = this.props;
 
         return (
             <View >
@@ -135,7 +105,7 @@ export default class Segmented extends Component {
 
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
-                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
                                                     <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
                                                 </TouchableOpacity>
@@ -184,7 +154,7 @@ export default class Segmented extends Component {
 
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
-                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
                                                     <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
                                                 </TouchableOpacity>
@@ -233,7 +203,7 @@ export default class Segmented extends Component {
 
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
-                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
                                                     <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
                                                 </TouchableOpacity>
@@ -282,7 +252,7 @@ export default class Segmented extends Component {
 
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
-                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
                                                     <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
                                                 </TouchableOpacity>
@@ -331,7 +301,7 @@ export default class Segmented extends Component {
 
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
-                                                <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
                                                     <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
                                                 </TouchableOpacity>
@@ -359,6 +329,11 @@ export default class Segmented extends Component {
             </View>
         )
     }
+}
+export default function (props) {
+    const navigation = useNavigation();
+
+    return <Segmented {...props} navigation={navigation} />;
 }
 
 const styles = StyleSheet.create({

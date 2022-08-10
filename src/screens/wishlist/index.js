@@ -42,7 +42,7 @@ const data = [
 ];
 
 
-export default class index extends Component {
+export default class Wishlist extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -145,7 +145,7 @@ export default class index extends Component {
                                                 </View>
 
                                             </TouchableOpacity>
-                                            <TouchableOpacity onPress={() => { this.setModalVisible(true); }} style={{ alignSelf: 'center', justifyContent: 'center' , marginLeft:15, alignContent:'center', marginTop:10}}>
+                                            <TouchableOpacity onPress={() => { this.setModalVisible(true); }} style={{ alignSelf: 'center', justifyContent: 'center', marginLeft: 15, alignContent: 'center', marginTop: 10 }}>
                                                 <Image style={{ alignSelf: 'center', width: 15, height: 30 }} resizeMode='contain' source={require('../../assets/g7.png')}></Image>
                                             </TouchableOpacity>
 
@@ -170,13 +170,13 @@ export default class index extends Component {
                     >
                         <View style={styles.centeredView}>
                             <View style={styles.modalView}>
-                              
+
 
                                 <TouchableOpacity style={styles.v06}>
 
                                     <Text style={styles.t03} >Delete</Text>
                                 </TouchableOpacity>
-                               
+
 
                             </View>
                         </View>
@@ -209,19 +209,19 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5
     },
-    t03:{
-       
+    t03: {
+
 
     },
-    v06:{
-        borderBottomColor:'#DFDFDF',
-        borderWidth:1,
-        width:80,
-        height:30,
-        marginTop:10,
-        borderTopColor:'white',
-        borderLeftColor:'white',
-        borderRightColor:'white'
+    v06: {
+        borderBottomColor: '#DFDFDF',
+        borderWidth: 1,
+        width: 80,
+        height: 30,
+        marginTop: 10,
+        borderTopColor: 'white',
+        borderLeftColor: 'white',
+        borderRightColor: 'white'
     },
     mainview: {
         borderWidth: 1,

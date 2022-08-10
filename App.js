@@ -1,4 +1,4 @@
-import { Text, View, SafeAreaView } from 'react-native'
+import 'react-native-gesture-handler';
 import React, { Component } from 'react'
 import Home from './src/screens/home/index'
 import HeaderA from './src/components/HeaderA'
@@ -14,6 +14,8 @@ import Product from './src/screens/product'
 
 
 import Featured from './src/screens/featured'
+import AppNavigator from './navigation/AppNavigator'
+import Wishlist from './src/screens/wishlist';
 
 
 
@@ -21,9 +23,7 @@ import Featured from './src/screens/featured'
 export default class App extends Component {
   render() {
     return (
-      <SafeAreaView>
-        <Home />
-      </SafeAreaView>
+      <Wishlist />
     )
   }
 }
