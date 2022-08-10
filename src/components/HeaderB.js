@@ -5,16 +5,16 @@ import {
 import Constants from "expo-constants";
 import color from '../../constants/color';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { DrawerActions } from '@react-navigation/native';
 
-function HeaderA(props) {
+
+function HeaderB(props) {
     const navigation = useNavigation();
 
     return (
         <SafeAreaView style={styles.Screen}>
             <View style={styles.view1}>
-                <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.openDrawer()); }}>
-                    <Image style={styles.backimg} source={require('../images/drawerButton.png')}></Image>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image style={styles.backimg} source={require('../images/backArrow.png')}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.view2}>
@@ -25,7 +25,7 @@ function HeaderA(props) {
     );
 }
 
-export default HeaderA;
+export default HeaderB;
 //
 const styles = StyleSheet.create({
     Screen: {
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
 
     },
     backimg: {
-        width: 35,
-        height: 35,
+        width: 45,
+        height: 45,
         resizeMode: 'contain',
         justifyContent: 'center',
         // marginTop: 120,

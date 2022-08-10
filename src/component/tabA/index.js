@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View,Image } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -12,47 +12,6 @@ import cart from '../../screens/cart/index';
 import profile from '../../screens/profile/index';
 
 
-
-
-
-
-
-
-
-function Root() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="homeT" component={homeT} />
-      <Stack.Screen name="Settings" component={Settings} />
-    </Stack.Navigator>
-  );
-}
-function Homescreen() {
-  return (
-    <NestedStack.Navigator>
-      <NestedStack.Screen name="account" component={account} />
-      <NestedStack.Screen name="Settings" component={Settings} />
-    </NestedStack.Navigator>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-
-function azzaam() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>azzaam</Text>
-    </View>
-
-  );
-}
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -77,7 +36,7 @@ export default function App1() {
           tabBarColor: '#1397D5',
 
           tabBarIcon: ({ color }) => (
-            <Image style= {{width:25, height:25}} source={require('../../assets/wishlist.png')}></Image>
+            <Image style={{ width: 25, height: 25 }} source={require('../../assets/wishlist.png')}></Image>
           ),
         }} />
       <Tab.Screen name="cart" component={cart}

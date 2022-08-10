@@ -9,6 +9,7 @@ import BestSellers from './BestSellers.js';
 import Segmented from './Segmented.js';
 import BestDeals from './BestDeals.js';
 import Divider from './Divider.js';
+import color from '../../../constants/color.js';
 
 export default class Home extends React.Component {
 
@@ -42,6 +43,7 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     screen: {
         paddingTop: Constants.statusBarHeight,
+        backgroundColor: color.background
 
     }
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, FlatList } from 'react-native';
 
 import StarRating from 'react-native-star-rating';
-import HeaderA from '../../components/HeaderA';
+import HeaderB from '../../components/HeaderB';
 
 import data from '../../../data/data';
 import color from '../../../constants/color';
@@ -24,7 +24,7 @@ function Product({ route, navigation }) {
     return (
 
         <SafeAreaView style={{ height: '100%', }}>
-            <HeaderA />
+            <HeaderB />
             <View style={styles.flatlistView}>
                 <FlatList
                     data={dataA}
