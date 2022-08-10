@@ -15,33 +15,35 @@ function ComponentA() {
         <View style={styles.main}>
 
             <View style={styles.view1}>
-                <TouchableOpacity onPress={() => navigation.navigate('Product')} style={styles.view12}>
+                <TouchableOpacity onPress={() => navigation.navigate('Featureds', { screenID: 2 })} style={styles.view12}>
                     <ImageBackground style={styles.mbackimg} source={require('../../images/kidsFashion.png')}></ImageBackground>
                     <View>
                         <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
                     </View>
                 </TouchableOpacity>
-                <View style={styles.view12}>
+                <TouchableOpacity onPress={() => navigation.navigate('Featureds', { screenID: 1 })} style={styles.view12}>
                     <ImageBackground style={styles.mbackimg} source={require('../../images/womenFashion.png')}></ImageBackground>
                     <View>
                         <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Women Fashion</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
 
             <View style={styles.view1}>
-                <View style={styles.view12}>
+                <TouchableOpacity onPress={() => navigation.navigate('Featureds', { screenID: 3 })} style={styles.view12}>
+
                     <ImageBackground style={styles.mbackimg} source={require('../../images/menFashion.png')}></ImageBackground>
                     <View>
                         <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
                     </View>
-                </View>
-                <View style={styles.view12}>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Featureds', { screenID: 4 })} style={styles.view12}>
+
                     <ImageBackground style={styles.mbackimg} source={require('../../images/accessories.png')}></ImageBackground>
                     <View>
                         <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Accessories</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
 
 

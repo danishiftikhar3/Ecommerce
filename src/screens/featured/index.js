@@ -1,252 +1,385 @@
-import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Alert, ImageBackground, Modal, ScrollView } from 'react-native';
+import React, { Component, setState, useEffect, useState } from 'react';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ImageBackground, Modal, SafeAreaView } from 'react-native';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
-import RangeSlider from 'rn-range-slider';
+import color from '../../../constants/color';
+import data from '../../../data/data';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const dataB = [
-    {
-        'id': '01',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-        'price': '$24',
 
-    },
-    {
-        'id': '02',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
 
-        'price': '$24',
+var womenData = data.filter(function (el) {
+    return el.category === 'women';
+}
+);
 
-    },
-    {
-        'id': '03',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
+var kidsData = data.filter(function (el) {
+    return el.category === 'kids';
+}
+);
 
-        'price': '$24',
+var menData = data.filter(function (el) {
+    return el.category === 'men';
+}
+);
 
-    },
-    {
-        'id': '04',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p61.png'),
-        'price': '$24',
-
-    },
-    {
-        'id': '05',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-
-        'price': '$24',
-
-    },
-    {
-        'id': '06',
-        'name': "Nike's Men Flex",
-        'pic': require('../../assets/p1.png'),
-
-        'price': '$24',
-
-    },
-]
-
-export default class Featured extends Component {
+var essData = data.filter(function (el) {
+    return el.essential;
+}
+);
+class Featured extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedIndex: 1,
-            starCount: 3.5,
+            customStyleIndex: 0,
             modalVisible: false,
-            isOnDefaultToggleSwitch: true,
-            isOnLargeToggleSwitch: false,
-            isOnBlueToggleSwitch: false,
         };
     }
 
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating
-        });
+    handleCustomIndexSelect = (index) => {
+        this.setState(prevState => ({ ...prevState, customStyleIndex: index }))
     }
     setModalVisible = (visible) => {
         this.setState({ modalVisible: visible });
     }
-    handleIndexChange = index => {
-        this.setState({
-            ...this.state,
-            selectedIndex: index
-        });
-    };
-    onToggle(isOn) {
-        console.log("Changed to " + isOn);
-    }
+
+
     render() {
         const { modalVisible, setModalVisible } = this.state;
+        const { customStyleIndex } = this.state
+        const { navigation } = this.props;
+        const { route } = this.props;
+        // const { customStyleIndex } = route.params;
+
+        console.log(customStyleIndex);
+
+
         return (
-            <ScrollView>
-                <View>
-                    <View style={styles.mainview}>
-                        <View style={styles.view1}>
-                            <Image style={styles.backimg} source={require('../../assets/Backarrow.png')}></Image>
-                        </View>
-                        <View style={styles.view2}>
-                            <Image style={styles.homeimg} source={require('../../assets/home.png')}></Image>
-                            <Text style={styles.txt1}>FEATURED</Text>
-                        </View>
-                        <View style={{ alignSelf: 'center' }}>
-                            <TouchableOpacity onPress={() => {
-                                this.setModalVisible(true);
-                            }} style={{ alignSelf: 'center', justifyContent: 'center' }}>
-                                <Image style={styles.img1} source={require('../../assets/filter.png')}></Image>
-                            </TouchableOpacity>
-                        </View>
+
+            <SafeAreaView style={styles.screen} >
+                <View style={styles.mainview}>
+                    <View style={styles.view1}>
+                        <Image style={styles.backimg} source={require('../../assets/Backarrow.png')}></Image>
                     </View>
-                    <View style={{
-                        alignSelf: 'center', justifyContent: 'space-around',
-                        backgroundColor: 'white', width: '100%', height: 40
-                    }}>
-                        <SegmentedControlTab
-                            values={['All', 'Women', 'Kids', 'Men', 'Essential']}
-                            selectedIndex={this.state.selectedIndex}
-                            onTabPress={this.handleIndexChange}
-                            tabStyle={styles.tabbar}
-                            activeTabStyle={styles.tabbar1}
-                            activeTabTextStyle={styles.tabbartxta}
-                            tabTextStyle={styles.tabbartxt}
-                            tabsContainerStyle={{
-                                justifyContent: 'space-around', width: '80%',
-                                alignSelf: 'center'
-                            }}
-                        />
+                    <View style={styles.view2}>
+                        <Image style={styles.homeimg} source={require('../../assets/home.png')}></Image>
+                        <Text style={styles.txt1}>FEATURED</Text>
                     </View>
-
-                    <View style={{ marginTop: 10 }}>
-                        <View style={{}}>
-                            <FlatList
-                                data={dataB}
-                                renderItem={({ item, index }) => (
-                                    <View style={styles.view3b}>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                            <TouchableOpacity>
-                                                <Image style={styles.img3b} source={require('../../assets/share.png')}></Image>
-                                            </TouchableOpacity>
-                                            <Image style={styles.img3b} source={require('../../assets/heart.png')}></Image>
-
-                                        </View>
-
-                                        <ImageBackground style={styles.img4b} source={item.pic}>
-
-
-                                            <View style={styles.view4b}>
-                                                <Text style={styles.txt4b}>{item.name}</Text>
-                                                <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
-                                                    <StarRating
-                                                        disabled={false}
-                                                        maxStars={5}
-                                                        rating={this.state.starCount}
-                                                        selectedStar={(rating) => this.onStarRatingPress(rating)}
-                                                        fullStarColor={'orange'}
-                                                        starSize={12}
-                                                        starStyle={{}}
-
-                                                    />
-                                                </View>
-
-
-                                            </View>
-                                        </ImageBackground>
-
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <Text style={styles.txt3b}>{item.price}</Text>
-                                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('product'); }}>
-
-                                                <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
-                                            </TouchableOpacity>
-                                        </View>
-
-                                    </View>
-                                )}
-                                numColumns={2}
-                                keyExtractor={item => item.id}
-                            />
-                        </View>
-
+                    <View style={{ alignSelf: 'center' }}>
+                        <TouchableOpacity onPress={() => {
+                            this.setModalVisible(true);
+                        }} style={{ alignSelf: 'center', justifyContent: 'center' }}>
+                            <Image style={styles.img1} source={require('../../assets/filter.png')}></Image>
+                        </TouchableOpacity>
                     </View>
-                    <View style={{ marginTop: 20 }}>
-
-                    </View>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalVisible}
-                        onRequestClose={() => {
-                            this.setModalVisible(!this.state.modalVisible)
+                </View>
+                <View style={styles.tabview}>
+                    <SegmentedControlTab
+                        values={['All', 'Women', 'Kids', 'Men', 'Essential']}
+                        selectedIndex={customStyleIndex}
+                        onTabPress={this.handleCustomIndexSelect}
+                        tabStyle={styles.tabStyle}
+                        activeTabStyle={styles.activeTab}
+                        activeTabTextStyle={styles.activeTabText}
+                        tabTextStyle={styles.tabTextStyle}
+                        tabsContainerStyle={{
+                            justifyContent: 'space-around', width: '100%',
+                            alignSelf: 'center'
                         }}
-                    >
-                        <View style={styles.centeredView}>
-                            <View style={styles.modalView}>
-                                <View>
-                                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Filter By Price</Text>
-                                    <RangeSlider
-                                        valueType="time"
-                                        gravity={'center'}
-                                        labelStyle={'none'}
-                                        style={{ width: '80%', height: 70 }}
-                                        min={1}
-                                        max={60}
-                                        selectionColor="#3df"
-                                        blankColor="#f618"
-                                        step={1000 * 60 * 60}
-                                        textFormat="HH:mm"
-                                        onValueChanged={this.handleSliderChange} />
-                                    <View style={styles.view7}>
-                                        <Text style={{ alignSelf: 'center', fontWeight: 'bold' }}>Size</Text>
-                                        <SegmentedControlTab
-                                            values={['L', "M", "S", "XL", 'XS',]}
-                                            selectedIndex={this.state.selectedIndex}
-                                            onTabPress={this.handleIndexChange}
-                                            tabStyle={styles.tabbar}
-                                            activeTabStyle={styles.tabbar1}
-                                            activeTabTextStyle={styles.tabbartxta}
-                                            tabTextStyle={styles.tabbartxt}
-                                            tabsContainerStyle={{
-                                                justifyContent: 'space-around', width: '80%',
-                                                alignSelf: 'center',
-                                            }}
-                                        />
-                                    </View>
-                                    <View style={{ alignSelf: 'center' }}>
-                                        <Text style={{ textAlign: 'center', fontSize: 16, fontWeight: 'bold' }}>Color</Text>
-                                        <View style={{ marginLeft: -6, flexDirection: 'row' }}>
-                                            <TouchableOpacity>
-                                                <Image style={styles.colimg} source={require('../../assets/e1.png')}></Image>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity>
-                                                <Image style={styles.colimg} source={require('../../assets/e2.png')}></Image>
-                                            </TouchableOpacity><TouchableOpacity>
-                                                <Image style={styles.colimg} source={require('../../assets/e3.png')}></Image>
-                                            </TouchableOpacity><TouchableOpacity>
-                                                <Image style={styles.colimg} source={require('../../assets/e4.png')}></Image>
-                                            </TouchableOpacity>
+                    />
+
+                    {customStyleIndex === 0
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={data}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
 
                                         </View>
-                                    </View>
-
-                                </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
                             </View>
-                        </View>
 
-                    </Modal>
+                        </View>
+                    }
+                    {customStyleIndex === 1
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={womenData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 2
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={kidsData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 3
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={menData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+                    {customStyleIndex === 4
+                        &&
+                        <View>
+                            <View style={styles.flatlistView}>
+                                <FlatList
+                                    data={essData}
+                                    renderItem={({ item, index }) => (
+                                        <View style={styles.flatlistView1}>
+
+                                            <ImageBackground style={styles.img4b} source={item.pic}>
+                                                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
+                                                    <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
+                                                </TouchableOpacity>
+
+                                                <View style={styles.view4b}>
+                                                    <Text style={styles.txt4b}>{item.title}</Text>
+                                                    <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 15 }}>
+                                                        <StarRating
+                                                            disabled={false}
+                                                            maxStars={5}
+                                                            rating={item.stars}
+                                                            fullStarColor={color.star}
+                                                            starSize={15}
+                                                            starStyle={{}}
+
+                                                        />
+                                                    </View>
+
+
+                                                </View>
+                                            </ImageBackground>
+
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text style={styles.txt3b}>${item.price}</Text>
+                                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
+                                                    <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                </TouchableOpacity>
+                                            </View>
+
+                                        </View>
+                                    )}
+                                    numColumns={2}
+                                    keyExtractor={item => item.id}
+                                />
+                            </View>
+
+                        </View>
+                    }
+
+
+
+
+
+
+
 
                 </View>
-            </ScrollView>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                        this.setModalVisible(!this.state.modalVisible)
+                    }}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <View>
+                                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Filter By Price</Text>
+
+
+
+                            </View>
+                        </View>
+                    </View>
+
+                </Modal>
+
+            </SafeAreaView>
+
         );
     }
 }
+export default function (props) {
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    return <Featured  {...props} navigation={navigation} route={route} />;
+}
+
 const styles = StyleSheet.create({
+    screen: {
+        backgroundColor: color.white,
+    },
     mainview: {
         borderWidth: 1,
         flexDirection: 'row',
@@ -268,9 +401,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center'
     },
-    view1: {
-
-    },
     view2: {
         justifyContent: 'center',
         flexDirection: 'row'
@@ -288,36 +418,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center'
     },
-    tabbar: {
-        borderWidth: 0,
-        borderColor: '#1397d5',
-
-    },
-    tabbar1: {
-        borderColor: '#1397d5',
-        borderWidth: 1,
-        backgroundColor: 'white',
-        borderTopEndRadius: 5,
-        borderBottomEndRadius: 5,
-        borderTopStartRadius: 5,
-        borderBottomStartRadius: 5,
-        borderLeftColor: '#1397d5',
-        shadowColor: "#1397d5",
-        shadowOffset: {
-            width: 0,
-            height: 10,
-        },
-        shadowOpacity: 0.51,
-        shadowRadius: 13.16,
-
-        elevation: 20,
-    },
-    tabbartxt: {
-        color: '#1397d5'
-    },
-    tabbartxta: {
-        color: '#1397d5'
-    },
     view3b: {
         // width: '70%',
         alignSelf: 'center',
@@ -330,43 +430,8 @@ const styles = StyleSheet.create({
         marginTop: 30,
         margin: 15
     },
-    img3b: {
-        width: 25,
-        height: 30,
-        resizeMode: 'contain',
-        alignSelf: 'center'
-    },
-    img4b: {
-        width: 150,
-        height: 200,
-        resizeMode: 'contain',
-        alignSelf: 'center',
-        marginTop: -40
 
-    },
-    img5b: {
-        width: 35,
-        height: 40,
 
-        alignSelf: 'center'
-    },
-    view4b: {
-        marginTop: 150
-    },
-    txt3b: {
-        fontSize: 16,
-        paddingLeft: 15,
-        alignSelf: 'center',
-        width: '70%',
-        fontWeight: 'bold',
-        color: '#153E73'
-    },
-    txt4b: {
-        fontSize: 14,
-        paddingLeft: 15,
-        fontWeight: 'bold',
-
-    },
     txt2: {
         fontSize: 16,
         paddingLeft: 10
@@ -413,5 +478,82 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         marginTop: 20
+    },
+    heart: {
+        width: 20,
+        height: 25,
+        resizeMode: 'contain',
+        tintColor: color.red
+    },
+    flatlistView: {
+        marginBottom: 25,
+        height: '100%'
+    },
+    tabStyle: {
+        borderColor: color.white
+    },
+    activeTab: {
+        borderWidth: 1,
+        backgroundColor: color.lightBlue,
+        flex: 1,
+        elevation: 20,
+        borderRadius: 8
+    },
+    activeTabText: {
+        color: color.black,
+        fontWeight: 'bold'
+    },
+    tabTextStyle: {
+        color: color.black
+    },
+    flatlistView1: {
+        // width: '70%',
+        alignSelf: 'center',
+        borderColor: color.border,
+        borderWidth: 1,
+        backgroundColor: color.white,
+        borderRadius: 15,
+        flex: 2,
+        elevation: 8,
+        marginTop: 30,
+        margin: 15
+    },
+    img3b: {
+        width: 25,
+        height: 30,
+        resizeMode: 'contain',
+        alignSelf: 'center'
+    },
+    txt4b: {
+        fontSize: 14,
+        paddingLeft: 15,
+        fontWeight: 'bold',
+
+    },
+    img5b: {
+        width: 35,
+        height: 40,
+
+        alignSelf: 'center'
+    },
+    img4b: {
+        width: 150,
+        height: 220,
+        resizeMode: 'contain',
+        alignSelf: 'center',
+        // marginTop: -40,
+        flex: 1
+
+    },
+    view4b: {
+        marginTop: 150
+    },
+    txt3b: {
+        fontSize: 16,
+        paddingLeft: 15,
+        alignSelf: 'center',
+        width: '70%',
+        fontWeight: 'bold',
+        color: color.darkBlue,
     },
 });

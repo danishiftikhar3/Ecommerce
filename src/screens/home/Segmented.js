@@ -46,7 +46,7 @@ class Segmented extends Component {
     }
 
 
-    handleCustomIndexSelect = (index: number) => {
+    handleCustomIndexSelect = (index) => {
         this.setState(prevState => ({ ...prevState, customStyleIndex: index }))
     }
 
