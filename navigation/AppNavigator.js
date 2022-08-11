@@ -28,6 +28,7 @@ import Home from "../src/screens/home";
 import Product from '../src/screens/product';
 import Featureds from '../src/screens/featured/featured';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Wishlist from '../src/screens/wishlist';
 
 
 const Stack = createNativeStackNavigator();
@@ -98,6 +99,7 @@ function StackScreen() {
 
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Product" component={Product} />
+            <Stack.Screen name="Wishlist" component={Wishlist} />
 
 
         </Stack.Navigator>
@@ -110,8 +112,9 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />} initialRouteName="Home" screenOptions={{ headerShown: false }}>
-                    <Drawer.Screen name="Home" component={TabNavigation} />
+                <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />} initialRouteName="Wishlist" screenOptions={{ headerShown: false }}>
+                    <Drawer.Screen name="Homed" component={TabNavigation} />
+
 
                 </Drawer.Navigator>
             </NavigationContainer>
@@ -151,5 +154,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: color.darkBlue
     },
+
 
 });
