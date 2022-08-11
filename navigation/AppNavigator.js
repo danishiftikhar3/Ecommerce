@@ -65,8 +65,8 @@ function TabNavigation() {
     return (
         <SafeAreaProvider>
             <Tab.Navigator screenOptions={{
-                headerShown: false, tabBarStyle: { backgroundColor: color.header, borderRadius: 20 }, tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: color.white,
+                headerShown: false, tabBarStyle: { borderTopLeftRadius: 25, borderTopRightRadius: 25 }, tabBarActiveTintColor: 'tomato',
+                tabBarInactiveTintColor: color.white, tabBarActiveBackgroundColor: color.header, tabBarInactiveBackgroundColor: color.header,
             }}>
                 <Tab.Screen name="Home" component={StackScreen}
                     options={{
