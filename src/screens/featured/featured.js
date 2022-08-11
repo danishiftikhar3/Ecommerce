@@ -9,22 +9,22 @@ import Constants from "expo-constants";
 
 
 
-var womenData = data.filter(function (el) {
+const womenData = data.filter(function (el) {
     return el.category === 'women';
 }
 );
 
-var kidsData = data.filter(function (el) {
+const kidsData = data.filter(function (el) {
     return el.category === 'kids';
 }
 );
 
-var menData = data.filter(function (el) {
+const menData = data.filter(function (el) {
     return el.category === 'men';
 }
 );
 
-var essData = data.filter(function (el) {
+const essData = data.filter(function (el) {
     return el.essential;
 }
 );
@@ -87,13 +87,12 @@ export default function Featureds() {
 
                 {customStyleIndex === 0
                     &&
-                    <View>
+                    <View style={{ flexGrow: 1 }}>
                         <View style={styles.flatlistView}>
                             <FlatList
                                 data={data}
                                 renderItem={({ item, index }) => (
-                                    <View style={styles.flatlistView1}>
-
+                                    <TouchableOpacity style={styles.flatlistView1} onPress={() => navigation.navigate('Product', { itemID: item.id })}>
                                         <ImageBackground style={styles.img4b} source={item.pic}>
                                             <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
                                                 <Image source={require('../../images/heart.png')} style={styles.heart} ></Image>
@@ -112,8 +111,6 @@ export default function Featureds() {
 
                                                     />
                                                 </View>
-
-
                                             </View>
                                         </ImageBackground>
 
@@ -125,10 +122,12 @@ export default function Featureds() {
                                             </TouchableOpacity>
                                         </View>
 
-                                    </View>
+                                    </TouchableOpacity>
                                 )}
                                 numColumns={2}
                                 keyExtractor={item => item.id}
+                                ListFooterComponent={<View style={{ height: 300 }} />}
+
                             />
                         </View>
 
@@ -141,7 +140,8 @@ export default function Featureds() {
                             <FlatList
                                 data={womenData}
                                 renderItem={({ item, index }) => (
-                                    <View style={styles.flatlistView1}>
+                                    <TouchableOpacity style={styles.flatlistView1} onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
 
                                         <ImageBackground style={styles.img4b} source={item.pic}>
                                             <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
@@ -174,10 +174,12 @@ export default function Featureds() {
                                             </TouchableOpacity>
                                         </View>
 
-                                    </View>
+                                    </TouchableOpacity>
                                 )}
                                 numColumns={2}
                                 keyExtractor={item => item.id}
+                                ListFooterComponent={<View style={{ height: 300 }} />}
+
                             />
                         </View>
 
@@ -190,7 +192,8 @@ export default function Featureds() {
                             <FlatList
                                 data={kidsData}
                                 renderItem={({ item, index }) => (
-                                    <View style={styles.flatlistView1}>
+                                    <TouchableOpacity style={styles.flatlistView1} onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
 
                                         <ImageBackground style={styles.img4b} source={item.pic}>
                                             <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
@@ -223,10 +226,12 @@ export default function Featureds() {
                                             </TouchableOpacity>
                                         </View>
 
-                                    </View>
+                                    </TouchableOpacity>
                                 )}
                                 numColumns={2}
                                 keyExtractor={item => item.id}
+                                ListFooterComponent={<View style={{ height: 300 }} />}
+
                             />
                         </View>
 
@@ -236,10 +241,12 @@ export default function Featureds() {
                     &&
                     <View>
                         <View style={styles.flatlistView}>
+
                             <FlatList
                                 data={menData}
                                 renderItem={({ item, index }) => (
-                                    <View style={styles.flatlistView1}>
+                                    <TouchableOpacity style={styles.flatlistView1} onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
 
                                         <ImageBackground style={styles.img4b} source={item.pic}>
                                             <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
@@ -272,10 +279,12 @@ export default function Featureds() {
                                             </TouchableOpacity>
                                         </View>
 
-                                    </View>
+                                    </TouchableOpacity>
                                 )}
                                 numColumns={2}
                                 keyExtractor={item => item.id}
+                                ListFooterComponent={<View style={{ height: 300 }} />}
+
                             />
                         </View>
 
@@ -285,10 +294,12 @@ export default function Featureds() {
                     &&
                     <View>
                         <View style={styles.flatlistView}>
+
                             <FlatList
                                 data={essData}
                                 renderItem={({ item, index }) => (
-                                    <View style={styles.flatlistView1}>
+                                    <TouchableOpacity style={styles.flatlistView1} onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+
 
                                         <ImageBackground style={styles.img4b} source={item.pic}>
                                             <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }}>
@@ -321,10 +332,12 @@ export default function Featureds() {
                                             </TouchableOpacity>
                                         </View>
 
-                                    </View>
+                                    </TouchableOpacity>
                                 )}
                                 numColumns={2}
                                 keyExtractor={item => item.id}
+                                ListFooterComponent={<View style={{ height: 300 }} />}
+
                             />
                         </View>
 
@@ -472,8 +485,8 @@ const styles = StyleSheet.create({
         tintColor: color.red
     },
     flatlistView: {
-        marginBottom: 25,
-        height: '100%'
+        height: '100%',
+        flexGrow: 1
     },
     tabStyle: {
         borderColor: color.white

@@ -5,6 +5,7 @@ import {
 import Constants from "expo-constants";
 import color from '../../constants/color';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { DrawerActions } from '@react-navigation/native';
 
 
 function HeaderB(props) {
@@ -15,6 +16,9 @@ function HeaderB(props) {
             <View style={styles.view1}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Image style={styles.backimg} source={require('../images/backArrow.png')}></Image>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.openDrawer()); }}>
+                    <Image style={styles.backimg} source={require('../images/drawerButton.png')}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.view2}>
@@ -42,10 +46,11 @@ const styles = StyleSheet.create({
 
     },
     backimg: {
-        width: 45,
-        height: 45,
+        width: 35,
+        height: 35,
         resizeMode: 'contain',
         justifyContent: 'center',
+        margin: 15
         // marginTop: 120,
 
     },
@@ -55,6 +60,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '30%',
         alignSelf: 'center',
+        flexDirection: 'row'
         // backgroundColor: 'red'
 
     },
