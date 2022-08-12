@@ -6,13 +6,13 @@ const bdata = [
     {
         'id': '01',
         'name': "Jane Doe",
-        'pic': require('../../assets/boi.png'),
+        'pic': require('../../images/boi.png'),
         stars: 4,
     },
     {
         'id': '02',
         'name': "Jane Doe",
-        'pic': require('../../assets/boi.png'),
+        'pic': require('../../images/boi.png'),
         stars: 4,
     },
 ]
@@ -62,7 +62,7 @@ export default class BestSellers extends Component {
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <Text style={{ color: '#DFDFDF', fontSize: 10, alignSelf: 'center' }}>Visit Store</Text>
 
-                                                <Image style={{ width: 20, height: 30, alignSelf: 'center' }} source={require('../../assets/for.png')}></Image>
+                                                <Image style={{ width: 20, height: 30, alignSelf: 'center' }} source={require('../../images/for.png')}></Image>
 
                                             </View>
                                         </TouchableOpacity>
@@ -81,7 +81,7 @@ export default class BestSellers extends Component {
                 </View>
                 <View style={styles.h32}  >
 
-                    <Image style={styles.i12} source={require('../../assets/line1.png')}></Image>
+                    <Image style={styles.i12} source={require('../../images/line1.png')}></Image>
 
                 </View>
             </View>

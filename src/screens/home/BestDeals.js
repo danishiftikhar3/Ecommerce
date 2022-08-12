@@ -63,7 +63,7 @@ function BestDeals() {
                                 <Text style={styles.txt3}>${item.price}</Text>
                                 <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                    <Image style={styles.img5} source={require('../../assets/for.png')}></Image>
+                                    <Image style={styles.img5} source={require('../../images/for.png')}></Image>
                                 </TouchableOpacity>
                             </View>
 

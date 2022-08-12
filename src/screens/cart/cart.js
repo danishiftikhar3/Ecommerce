@@ -74,12 +74,12 @@ function Cart(props) {
                                         <Text style={styles.txt8}>Quantity</Text>
                                         <View style={styles.view6}>
                                             <TouchableOpacity onPress={() => decCount(index)} >
-                                                <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../assets/minus.png')}></Image>
+                                                <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../images/minus.png')}></Image>
                                             </TouchableOpacity>
                                             <Text style={{ fontSize: 20, alignSelf: 'center', marginTop: -5 }}>  {item.Qty}  </Text>
 
                                             <TouchableOpacity onPress={() => incrementCount(index)} >
-                                                <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../assets/plus.png')}></Image>
+                                                <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../images/plus.png')}></Image>
                                             </TouchableOpacity>
 
 

@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import Icon from 'react-native-ionicons'
-import StarRating from 'react-native-star-rating';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 
 const slides = [
     {
         key: 's1',
         title: 'Best Deals',
-        image: require('../../assets/d3.jpg'),
+        image: require('../../images/d3.jpg'),
         backgroundColor: 'red',
     },
     {
         key: 's2',
         title: 'Choose your Food',
-        image: require('../../assets/d2.jpg'),
+        image: require('../../images/d2.jpg'),
         backgroundColor: '#febe29',
     },
     {
         key: 's3',
         title: 'Secure Payments',
-        image: require('../../assets/d1.jpg'),
+        image: require('../../images/d1.jpg'),
         backgroundColor: '#22bcb5',
     },
 
@@ -31,13 +31,13 @@ export default class StartUpScreen extends Component {
     componentDidMount() {
 
         setTimeout(
-          () => {
-            this.props.navigation.replace('s1');
-    
-    
-          }, 4000
+            () => {
+                console.log('hell')
+
+
+            }, 4000
         );
-      }
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -48,9 +48,9 @@ export default class StartUpScreen extends Component {
         return (
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('s1'); }}>
 
-            <View style={styles.buttonCircle}>
-                 <Text>Skip</Text>
-            </View>
+                <View style={styles.buttonCircle}>
+                    <Text>Skip</Text>
+                </View>
             </TouchableOpacity>
         );
     };
@@ -58,9 +58,9 @@ export default class StartUpScreen extends Component {
         return (
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('c43'); }}>
 
-            <View style={styles.buttonCircle}>
-                 <Text>Skip</Text>
-            </View>
+                <View style={styles.buttonCircle}>
+                    <Text>Skip</Text>
+                </View>
             </TouchableOpacity>
         );
     };
@@ -73,7 +73,7 @@ export default class StartUpScreen extends Component {
                     <View style={styles.testView}>
                         <Text style={styles.title}>{item.title}</Text>
                     </View>
-                  
+
                 </ImageBackground>
             </View>
         );
@@ -92,38 +92,39 @@ export default class StartUpScreen extends Component {
 
             />
 
+
         );
 
     }
 }
 const styles = StyleSheet.create({
     mainView: {
-      
-        
-        
+
+
+
     },
 
     image: {
-        flex:1,
-        width:"100%",
-        height:770,
-        alignItems:"center",
-      
-           },
- 
+        flex: 1,
+        width: "100%",
+        height: 770,
+        alignItems: "center",
+
+    },
+
     title: {
         fontSize: 50,
-        color:'white',
-        marginTop:'70%',
-        alignSelf:'center'
+        color: 'white',
+        marginTop: '70%',
+        alignSelf: 'center'
     },
-   
+
     textView: {
         width: '80%',
         alignSelf: 'center',
-        marginTop:'50%'
+        marginTop: '50%'
     },
- 
+
     buttonCircle: {
         width: 40,
         height: 40,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
-        opacity:0.6
+        opacity: 0.6
     },
 
 });

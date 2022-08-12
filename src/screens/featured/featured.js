@@ -105,7 +105,7 @@ export default function Featureds() {
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                                <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                <Image style={styles.img5b} source={require('../../images/for.png')}></Image>
                                             </TouchableOpacity>
                                         </View>
 
@@ -157,7 +157,7 @@ export default function Featureds() {
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                                <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                <Image style={styles.img5b} source={require('../../images/for.png')}></Image>
                                             </TouchableOpacity>
                                         </View>
 
@@ -209,7 +209,7 @@ export default function Featureds() {
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                                <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                <Image style={styles.img5b} source={require('../../images/for.png')}></Image>
                                             </TouchableOpacity>
                                         </View>
 
@@ -262,7 +262,7 @@ export default function Featureds() {
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                                <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                <Image style={styles.img5b} source={require('../../images/for.png')}></Image>
                                             </TouchableOpacity>
                                         </View>
 
@@ -315,7 +315,7 @@ export default function Featureds() {
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                                <Image style={styles.img5b} source={require('../../assets/for.png')}></Image>
+                                                <Image style={styles.img5b} source={require('../../images/for.png')}></Image>
                                             </TouchableOpacity>
                                         </View>
 
