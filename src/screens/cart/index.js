@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, Modal } from 'react-native';
 
 import StarRating from 'react-native-star-rating';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const data = [
     {
@@ -54,7 +53,7 @@ const data = [
 ];
 
 
-export default class Cart extends Component {
+export default class CartA extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -109,56 +108,9 @@ export default class Cart extends Component {
             data: arr,
         });
     }
-    onSwipe(gestureName, gestureState) {
-        const { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
-        this.setState({ gestureName: gestureName });
-        switch (gestureName) {
-            case SWIPE_UP:
-                this.setState({ abc: true });
-                break;
-            case SWIPE_DOWN:
-                this.setState({ abc: true });
-                break;
-            case SWIPE_LEFT:
-                this.setState({ abc: true, });
-                break;
-            case SWIPE_RIGHT:
-                this.setState({ abc: true });
-                break;
-        }
-    }
-    onStarRatingPress(rating) {
-        this.setState({
-            starCount: rating
-        });
-    }
-    setModalVisible = (visible) => {
-        this.setState({ modalVisible: visible });
-    }
-    handleIndexChange = index => {
-        this.setState({
-            ...this.state,
-            selectedIndex: index
-        });
-    };
-    onToggle(isOn) {
-        console.log("Changed to " + isOn);
-    }
-    _menu = null;
 
-    setMenuRef = ref => {
-        this._menu = ref;
-    };
 
-    hideMenu = () => {
-        this._menu.hide();
-    };
-
-    showMenu = () => {
-        this._menu.show();
-    };
     render() {
-        const { modalVisible, setModalVisible } = this.state;
 
         return (
             <View >
@@ -219,9 +171,7 @@ export default class Cart extends Component {
 
                                                 </View>
                                             </View>
-                                            <TouchableOpacity onPress={() => { this.setModalVisible(true); }} style={{ alignSelf: 'center', justifyContent: 'center', marginLeft: 15, alignContent: 'center', marginTop: 10 }}>
-                                                <Image style={{ alignSelf: 'center', width: 15, height: 30 }} resizeMode='contain' source={require('../../assets/g7.png')}></Image>
-                                            </TouchableOpacity>
+
 
 
                                         </View>
@@ -233,28 +183,7 @@ export default class Cart extends Component {
                             ListFooterComponent={<View style={{ height: 300 }} />}
                         />
                     </View>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalVisible}
-                        onRequestClose={() => {
-                            this.setModalVisible(!this.state.modalVisible)
-                        }}
-                    >
-                        <View style={styles.centeredView}>
-                            <View style={styles.modalView}>
 
-
-                                <TouchableOpacity style={styles.v06}>
-
-                                    <Text style={styles.t03} >Delete</Text>
-                                </TouchableOpacity>
-
-
-                            </View>
-                        </View>
-
-                    </Modal>
                 </View>
             </View>
         );

@@ -6,6 +6,8 @@ import color from '../../../constants/color';
 import data from '../../../data/data';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Constants from "expo-constants";
+import HeaderA from '../../components/HeaderA';
+import HeaderB from '../../components/HeaderB';
 
 
 
@@ -51,22 +53,7 @@ export default function Featureds() {
 
 
         <SafeAreaView style={styles.screen} >
-            <View style={styles.mainview}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.view1}>
-                    <Image style={styles.backimg} source={require('../../images/backArrow.png')}></Image>
-                </TouchableOpacity>
-                <View style={styles.view2}>
-                    <Image style={styles.homeimg} source={require('../../images/logo.png')}></Image>
-                    <Text style={styles.txt1}>FEATURED</Text>
-                </View>
-                <View style={{ alignSelf: 'center' }}>
-                    <TouchableOpacity onPress={() => {
-                        setModalVisible(true);
-                    }} style={{ alignSelf: 'center', justifyContent: 'center' }}>
-                        <Image style={styles.img1} source={require('../../images/filter.png')}></Image>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <HeaderA Title='Featured' style={{ tintColor: color.black }} />
 
 
             <View style={styles.tabview}>

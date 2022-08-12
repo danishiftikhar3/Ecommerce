@@ -29,6 +29,7 @@ import Product from '../src/screens/product';
 import Featureds from '../src/screens/featured/featured';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Wishlist from '../src/screens/wishlist';
+import Cart from '../src/screens/cart/cart';
 
 
 const Stack = createNativeStackNavigator();
@@ -54,6 +55,18 @@ function CustomDrawerContent(props) {
                         <Image source={require('../src/images/home.png')} />
                     </View>
                     <Text style={styles.txt}>Features</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Wishlist')} style={styles.bar}>
+                    <View style={styles.inBar} >
+                        <Image source={require('../src/images/home.png')} />
+                    </View>
+                    <Text style={styles.txt}>Wishlist</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Cart')} style={styles.bar}>
+                    <View style={styles.inBar} >
+                        <Image source={require('../src/images/home.png')} />
+                    </View>
+                    <Text style={styles.txt}>Cart</Text>
                 </TouchableOpacity>
 
 
@@ -87,6 +100,24 @@ function TabNavigation() {
                             <FontAwesome name="home" color={color} size={26} />
                         ),
                     }} />
+                <Tab.Screen name="Wishlist" component={Wishlist}
+                    options={{
+                        tabBarLabel: 'Wishlist',
+                        tabBarColor: 'red',
+
+                        tabBarIcon: ({ color }) => (
+                            <FontAwesome name="home" color={color} size={26} />
+                        ),
+                    }} />
+                <Tab.Screen name="Cart" component={Cart}
+                    options={{
+                        tabBarLabel: 'Cart',
+                        tabBarColor: 'red',
+
+                        tabBarIcon: ({ color }) => (
+                            <FontAwesome name="home" color={color} size={26} />
+                        ),
+                    }} />
             </Tab.Navigator>
         </SafeAreaProvider>
 
@@ -99,7 +130,7 @@ function StackScreen() {
 
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Product" component={Product} />
-            <Stack.Screen name="Wishlist" component={Wishlist} />
+
 
 
         </Stack.Navigator>

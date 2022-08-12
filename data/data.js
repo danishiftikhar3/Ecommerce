@@ -7,7 +7,8 @@ const data = [
         stars: 4,
         category: 'women',
         essential: true,
-        accessory: false
+        accessory: false,
+        'Qty': 1
 
     },
     {
@@ -19,6 +20,7 @@ const data = [
         category: 'men',
         essential: true,
         bestDeal: true,
+        'Qty': 1
 
 
 
@@ -31,6 +33,7 @@ const data = [
         stars: 4,
         category: 'women',
         essential: true,
+        'Qty': 1
 
 
 
@@ -45,6 +48,7 @@ const data = [
         essential: true,
         accessory: true,
         bestDeal: false,
+        'Qty': 1
 
 
 
@@ -58,7 +62,8 @@ const data = [
         'price': 160,
         stars: 4,
         category: 'men',
-        bestSeller: true
+        bestSeller: true,
+        'Qty': 1
 
 
     },
@@ -69,7 +74,8 @@ const data = [
         'price': 160,
         stars: 4,
         category: 'women',
-        bestSeller: true
+        bestSeller: true,
+        'Qty': 1
 
 
 
@@ -84,6 +90,7 @@ const data = [
         bestSeller: true,
         accessory: true,
         bestDeal: true,
+        'Qty': 1
 
 
 
@@ -99,6 +106,7 @@ const data = [
         category: 'kids',
         bestSeller: true,
         bestDeal: true,
+        'Qty': 1
 
     },
     {
@@ -108,6 +116,7 @@ const data = [
         'price': 160,
         stars: 4,
         category: 'kids',
+        'Qty': 1
 
     },
     {
@@ -117,6 +126,7 @@ const data = [
         'price': 160,
         stars: 4,
         category: 'women',
+        'Qty': 1
 
 
 

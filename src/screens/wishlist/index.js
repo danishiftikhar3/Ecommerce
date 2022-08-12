@@ -9,88 +9,77 @@ import HeaderA from '../../components/HeaderA';
 
 
 
+function Wishlist(props) {
+    return (
 
 
-export default class Wishlist extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+        <SafeAreaView>
+            <HeaderA Title='Wishlist' />
 
+            <View style={{ backgroundColor: 'white' }}>
+                <FlatList
+                    data={data}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.flatlistView}>
+                            <TouchableOpacity style={styles.view3}>
+                                <View style={{ width: '30%' }}>
+                                    <Image source={item.pic} style={styles.img1}></Image>
+                                </View>
 
+                                <View style={styles.view4}>
+                                    <Text style={styles.txt2}>{item.title}</Text>
+                                    <View style={{ width: '20%', marginTop: 4, resizeMode: 'contain', }}>
+                                        <StarRating
+                                            disabled={false}
+                                            maxStars={5}
+                                            rating={item.stars}
+                                            fullStarColor={'orange'}
+                                            starSize={15}
 
-        };
+                                        />
 
-    }
-
-    render() {
-        return (
-
-            <SafeAreaView>
-                <HeaderA Title='Wishlist' />
-
-                <View style={{ backgroundColor: 'white' }}>
-                    <FlatList
-                        data={data}
-                        renderItem={({ item, index }) => (
-                            <View style={styles.flatlistView}>
-                                <TouchableOpacity style={styles.view3}>
-                                    <View style={{ width: '30%' }}>
-                                        <Image source={item.pic} style={styles.img1}></Image>
                                     </View>
+                                    <Text style={styles.txt3}>${item.price}</Text>
 
-                                    <View style={styles.view4}>
-                                        <Text style={styles.txt2}>{item.title}</Text>
-                                        <View style={{ width: '20%', marginTop: 4, resizeMode: 'contain', }}>
-                                            <StarRating
-                                                disabled={false}
-                                                maxStars={5}
-                                                rating={item.stars}
-                                                fullStarColor={'orange'}
-                                                starSize={15}
+                                </View>
+                                <View style={styles.view9} >
+                                    <TouchableOpacity style={{}} onPress={() => { this.props.navigation.navigate('cart'); }}>
 
-                                            />
-
+                                        <View style={styles.view7}>
+                                            <Text style={styles.txt4}>Add to Bag</Text>
                                         </View>
-                                        <Text style={styles.txt3}>${item.price}</Text>
 
-                                    </View>
-                                    <View style={styles.view9} >
-                                        <TouchableOpacity style={{}} onPress={() => { this.props.navigation.navigate('cart'); }}>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={{ marginTop: 10 }} onPress={() => { this.props.navigation.navigate('cart'); }}>
 
-                                            <View style={styles.view7}>
-                                                <Text style={styles.txt4}>Add to Bag</Text>
-                                            </View>
+                                        <View style={styles.view7}>
+                                            <Text style={styles.txt5}>Delete</Text>
+                                        </View>
 
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10 }} onPress={() => { this.props.navigation.navigate('cart'); }}>
-
-                                            <View style={styles.view7}>
-                                                <Text style={styles.txt5}>Delete</Text>
-                                            </View>
-
-                                        </TouchableOpacity>
+                                    </TouchableOpacity>
 
 
 
 
-                                    </View>
-                                </TouchableOpacity>
+                                </View>
+                            </TouchableOpacity>
 
 
 
-                            </View>
-                        )}
-                        keyExtractor={item => item.id}
-                        ListFooterComponent={<View style={{ height: 150 }} />}
+                        </View>
+                    )}
+                    keyExtractor={item => item.id}
+                    ListFooterComponent={<View style={{ height: 150 }} />}
 
-                    />
-                </View>
+                />
+            </View>
 
-            </SafeAreaView>
-
-        );
-    }
+        </SafeAreaView>
+    )
 }
+
+export default Wishlist;
+
 const styles = StyleSheet.create({
     flatlistView: {
         justifyContent: 'space-around',
