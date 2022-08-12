@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, FlatList } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import StarRating from 'react-native-star-rating';
 import HeaderB from '../../components/HeaderB';
@@ -12,7 +13,9 @@ import color from '../../../constants/color';
 
 const starCount = 4.5
 
-function Product({ route, navigation }) {
+function Product() {
+    const route = useRoute();
+    const navigation = useNavigation();
     const { itemID } = route.params;
 
     var dataA = data.filter(function (el) {
@@ -63,7 +66,7 @@ function Product({ route, navigation }) {
                                         <Text style={styles.txt4}>Add to Bag</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.view6} onPress={() => { this.props.navigation.navigate('wishlist'); }}>
+                                <TouchableOpacity style={styles.view6} onPress={() => navigation.navigate('Wishlist', { itemID: item.id })}>
                                     <View >
                                         <Text style={styles.txt5}>Add to Wishlist</Text>
                                     </View>

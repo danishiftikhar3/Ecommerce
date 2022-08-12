@@ -10,7 +10,7 @@ import { RadioButton } from 'react-native-paper';
 import Constants from "expo-constants";
 
 import data from '../../../data/data';
-import HeaderA from '../../components/HeaderA';
+import HeaderB from '../../components/HeaderB';
 import color from '../../../constants/color';
 
 
@@ -82,7 +82,7 @@ export default function Featureds() {
 
 
         <SafeAreaView style={styles.screen} >
-            <HeaderA Title='Featured' style={{ tintColor: color.black }} onPress={() => setModalVisible(!modalVisible)} />
+            <HeaderB Title='Featured' style={{ tintColor: color.black }} onPress={() => setModalVisible(!modalVisible)} />
 
 
             <View style={styles.tabview}>

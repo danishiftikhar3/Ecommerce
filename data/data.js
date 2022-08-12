@@ -8,7 +8,9 @@ const data = [
         category: 'women',
         essential: true,
         accessory: false,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: true,
+        cart: true,
 
     },
     {
@@ -20,7 +22,9 @@ const data = [
         category: 'men',
         essential: true,
         bestDeal: true,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
 
@@ -33,7 +37,9 @@ const data = [
         stars: 4,
         category: 'women',
         essential: true,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
 
@@ -48,7 +54,9 @@ const data = [
         essential: true,
         accessory: true,
         bestDeal: false,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
 
@@ -63,7 +71,9 @@ const data = [
         stars: 4,
         category: 'men',
         bestSeller: true,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
     },
@@ -75,7 +85,9 @@ const data = [
         stars: 4,
         category: 'women',
         bestSeller: true,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
 
@@ -90,7 +102,9 @@ const data = [
         bestSeller: true,
         accessory: true,
         bestDeal: true,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
 
@@ -106,7 +120,9 @@ const data = [
         category: 'kids',
         bestSeller: true,
         bestDeal: true,
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
     },
     {
@@ -116,7 +132,9 @@ const data = [
         'price': 30,
         stars: 4,
         category: 'kids',
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
     },
     {
@@ -126,7 +144,9 @@ const data = [
         'price': 1800,
         stars: 4,
         category: 'women',
-        'Qty': 1
+        'Qty': 1,
+        wishlist: false,
+        cart: false,
 
 
 

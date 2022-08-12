@@ -1,80 +1,96 @@
-import React from 'react';
-import {
-    View, Text, Image, StyleSheet, SafeAreaView, TouchableOpacity
-} from 'react-native';
-import Constants from "expo-constants";
-import color from '../../constants/color';
+import React from 'react'
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ImageBackground, Modal, SafeAreaView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import color from '../../constants/color';
 import { DrawerActions } from '@react-navigation/native';
 
 
-function HeaderB(props) {
+export default function HeaderA(props) {
     const navigation = useNavigation();
 
     return (
-        <SafeAreaView style={styles.Screen}>
-            <View style={styles.view1}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image style={styles.backimg} source={require('../images/backArrow.png')}></Image>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.openDrawer()); }}>
-                    <Image style={styles.backimg} source={require('../images/drawerButton.png')}></Image>
-                </TouchableOpacity>
+        <View>
+            <View style={styles.mainview}>
+                <View style={styles.view}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <Image style={styles.backimg} source={require('../images/backArrow.png')}></Image>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.dispatch(DrawerActions.openDrawer()); }}>
+                        <Image style={styles.backimg1} source={require('../images/drawerButton.png')}></Image>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.view2}>
+                    <Image style={styles.homeimg} source={require('../images/logo.png')}></Image>
+                    <Text style={styles.txt1}>{props.Title}</Text>
+                </View>
+                <View style={{ alignSelf: 'center' }}>
+                    <TouchableOpacity onPress={props.onPress} style={{ alignSelf: 'center', justifyContent: 'center' }}>
+                        <Image style={[styles.img1, { tintColor: color.header }, props.style]} source={require('../images/filter.png')}></Image>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.view2}>
-                <Image style={styles.homeimg} source={require('../images/logo.png')}></Image>
-
-            </View>
-        </SafeAreaView>
-    );
+        </View>
+    )
 }
 
-export default HeaderB;
-//
 const styles = StyleSheet.create({
-    Screen: {
+    view: {
+        flexDirection: 'row'
+    },
+    view1: {
+        justifyContent: 'center',
+        alignSelf: 'center',
+        margin: 10
+        // backgroundColor: 'red'
+
+    },
+    mainview: {
         flexDirection: 'row',
         height: 70,
         padding: 10,
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignContent: 'center',
         width: '100%',
         alignSelf: 'center',
-        paddingTop: Constants.statusBarHeight,
         position: "relative",
         backgroundColor: color.header
-
     },
     backimg: {
         width: 35,
         height: 35,
         resizeMode: 'contain',
         justifyContent: 'center',
-        margin: 15
-        // marginTop: 120,
-
+        marginTop: 10,
     },
-
-
-    view1: {
+    backimg1: {
+        width: 35,
+        height: 35,
+        resizeMode: 'contain',
         justifyContent: 'center',
-        width: '30%',
-        alignSelf: 'center',
-        flexDirection: 'row'
-        // backgroundColor: 'red'
-
+        marginTop: 10,
+        left: 30
+    },
+    homeimg: {
+        width: 40,
+        height: 50,
+        resizeMode: 'contain',
+        alignSelf: 'center'
     },
     view2: {
         justifyContent: 'center',
-
-        width: '50%',
-
-
+        flexDirection: 'row'
     },
-    homeimg: {
+    txt1: {
+        alignSelf: 'center',
+        fontSize: 22,
+        textTransform: 'uppercase',
+        // fontWeight: 'bold',
+        color: color.black
+    },
+    img1: {
         width: 50,
-        height: 50,
+        height: 25,
         resizeMode: 'contain',
+        alignSelf: 'center'
     },
-
-})
+});

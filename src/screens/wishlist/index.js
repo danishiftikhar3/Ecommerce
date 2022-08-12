@@ -1,24 +1,42 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
 import data from '../../../data/data';
 import HeaderA from '../../components/HeaderA';
+import Constants from "expo-constants";
 
 
 
 
 function Wishlist(props) {
+    const route = useRoute();
+    const navigation = useNavigation();
+
+    var wishlist = []
+    if (typeof route.params !== 'undefined') {
+        const { itemID } = route.params;
+        var aData = data.filter(function (el) {
+            return el.id === itemID;
+        }
+        );
+        var wishlist = [...wishlist, ...aData]
+    } else {
+        var wishlist = []
+
+    };
+
     return (
 
 
-        <SafeAreaView>
+        <SafeAreaView style={styles.screen}>
             <HeaderA Title='Wishlist' />
 
             <View style={{ backgroundColor: 'white' }}>
                 <FlatList
-                    data={data}
+                    data={wishlist}
                     renderItem={({ item, index }) => (
                         <View style={styles.flatlistView}>
                             <TouchableOpacity style={styles.view3}>
@@ -81,6 +99,12 @@ function Wishlist(props) {
 export default Wishlist;
 
 const styles = StyleSheet.create({
+    screen: {
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: color.background,
+        height: '100%'
+
+    },
     flatlistView: {
         justifyContent: 'space-around',
         borderWidth: 1,
