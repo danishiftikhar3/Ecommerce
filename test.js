@@ -1,35 +1,36 @@
-const data = [
+
+
+let employees = [
     {
-        'id': '01',
-        'title': "Mini Denim Shorts",
-        // 'pic': require('../../images/miniDenimShorts.png'),
-        'price': 24,
-        stars: 4,
-        'cat': 'women'
-
+        firstName: 'John',
+        lastName: 'Doe',
+        age: 27,
+        joinedDate: 'December 15, 2017'
     },
+
     {
-        'id': '02',
-        'title': "Nike Air Force 1",
-        // 'pic': require('../../images/pants.png'),
-        'price': 25,
-        stars: 1,
-        'cat': 'women'
-
+        firstName: 'Ana',
+        lastName: 'Rosy',
+        age: 25,
+        joinedDate: 'January 15, 2019'
     },
+
     {
-        'id': '03',
-        'title': "Women Track Suite",
-        // 'pic': require('../../images/womenTrackSuite.png'),
-        'price': 30,
-        stars: 4,
-        cat: 'men'
+        firstName: 'Zion',
+        lastName: 'Albert',
+        age: 30,
+        joinedDate: 'February 15, 2011'
+    }
+];
+employees.sort((a, b) => {
+    return a.age - b.age;
+});
+// employees.forEach((e) => {
+//     console.log(`${e.firstName} ${e.lastName} ${e.age}`);
 
-    },
-]
-var newArray = data.filter(function (el) {
-    return el.cat === "women";
-}
-
-);
-console.log(newArray);
+// });
+console.log(emp
+    
+    data.sort((a, b) => {
+    return b.price - a.price;
+});

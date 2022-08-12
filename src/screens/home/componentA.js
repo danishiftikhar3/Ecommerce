@@ -34,14 +34,14 @@ function ComponentA() {
 
                     <ImageBackground style={styles.mbackimg} source={require('../../images/menFashion.png')}></ImageBackground>
                     <View>
-                        <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Kids Fashion</Text>
+                        <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Men Fashion</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Featureds', { screenID: 4 })} style={styles.view12}>
 
                     <ImageBackground style={styles.mbackimg} source={require('../../images/accessories.png')}></ImageBackground>
                     <View>
-                        <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Accessories</Text>
+                        <Text style={{ fontSize: 17, fontWeight: 'bold', textAlign: 'center', color: 'white', marginTop: -50 }}>Essential</Text>
                     </View>
                 </TouchableOpacity>
             </View>

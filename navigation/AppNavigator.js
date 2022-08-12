@@ -54,7 +54,7 @@ function CustomDrawerContent(props) {
                     <View style={styles.inBar} >
                         <Image source={require('../src/images/home.png')} />
                     </View>
-                    <Text style={styles.txt}>Features</Text>
+                    <Text style={styles.txt}>Featured</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => props.navigation.navigate('Wishlist')} style={styles.bar}>
                     <View style={styles.inBar} >
@@ -91,15 +91,6 @@ function TabNavigation() {
                     }}
 
                 />
-                <Tab.Screen name="Featureds" component={Featureds}
-                    options={{
-                        tabBarLabel: 'Features',
-                        tabBarColor: 'red',
-
-                        tabBarIcon: ({ color }) => (
-                            <FontAwesome name="home" color={color} size={26} />
-                        ),
-                    }} />
                 <Tab.Screen name="Wishlist" component={Wishlist}
                     options={{
                         tabBarLabel: 'Wishlist',
@@ -130,6 +121,8 @@ function StackScreen() {
 
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Product" component={Product} />
+            <Stack.Screen name="Featureds" component={Featureds} />
+
 
 
 
@@ -159,7 +152,7 @@ const styles = StyleSheet.create({
         backgroundColor: color.header,
         height: windowHeight,
         alignContent: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
     },
     bar: {
         backgroundColor: color.white,
@@ -168,7 +161,9 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 5
+        margin: 5,
+
+
 
     },
     inBar: {
