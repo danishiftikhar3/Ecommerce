@@ -1,35 +1,22 @@
-import React, { Component, setState, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ImageBackground, Modal, SafeAreaView, Pressable } from 'react-native';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
-import color from '../../../constants/color';
-import data from '../../../data/data';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { RadioButton } from 'react-native-paper';
+
+
 import Constants from "expo-constants";
+
+import data from '../../../data/data';
 import HeaderA from '../../components/HeaderA';
-import HeaderB from '../../components/HeaderB';
+import color from '../../../constants/color';
 
 
 
-const womenData = data.filter(function (el) {
-    return el.category === 'women';
-}
-);
 
-const kidsData = data.filter(function (el) {
-    return el.category === 'kids';
-}
-);
 
-const menData = data.filter(function (el) {
-    return el.category === 'men';
-}
-);
-
-const essData = data.filter(function (el) {
-    return el.essential;
-}
-);
 
 export default function Featureds() {
     // const [modalVisible, setModalVisible] = useState(false);
@@ -45,10 +32,52 @@ export default function Featureds() {
 
     }
     const [modalVisible, setModalVisible] = useState(false);
+    const [checked, setChecked] = useState('');
 
+    const assending = () => {
+        data.sort((a, b) => {
+            return a.price - b.price;
+        });
+    }
+    const dessending = () => {
+        data.sort((a, b) => {
+            return b.price - a.price;
+        });
+    }
+    const assendingName = () => {
+        data.sort((a, b) => {
+            let fa = a.title.toLowerCase(),
+                fb = b.title.toLowerCase();
 
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+    }
 
+    const womenData = data.filter(function (el) {
+        return el.category === 'women';
+    }
+    );
 
+    const kidsData = data.filter(function (el) {
+        return el.category === 'kids';
+    }
+    );
+
+    const menData = data.filter(function (el) {
+        return el.category === 'men';
+    }
+    );
+
+    const essData = data.filter(function (el) {
+        return el.essential;
+    }
+    );
     return (
 
 
@@ -351,12 +380,46 @@ export default function Featureds() {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
+                        <Text style={styles.modalText}>Filter by Price</Text>
+                        <View style={styles.Rb}>
+                            <View style={styles.radioButton}>
+                                <RadioButton
+                                    value="1"
+                                    status={checked === '1' ? 'checked' : 'unchecked'}
+                                    onPress={() => { setChecked('1'), setModalVisible(!modalVisible), assending() }}
+                                />
+                            </View>
+                            <Text style={styles.Rbtxt}>Assendeing Price</Text>
+                        </View>
+                        <View style={styles.Rb}>
+                            <View style={styles.radioButton}>
+                                <RadioButton
+                                    color='white'
+                                    value="2"
+                                    status={checked === '2' ? 'checked' : 'unchecked'}
+                                    onPress={() => { setChecked('2'), setModalVisible(!modalVisible), dessending() }}
+                                />
+                            </View>
+                            <Text style={styles.Rbtxt}>Dessending Price</Text>
+                        </View>
+                        <Text style={styles.modalText}>Filter by Name</Text>
+                        <View style={styles.Rb}>
+                            <View style={styles.radioButton}>
+                                <RadioButton
+                                    value="3"
+                                    status={checked === '3' ? 'checked' : 'unchecked'}
+                                    onPress={() => { setChecked('3'), setModalVisible(!modalVisible), assendingName() }}
+                                />
+                            </View>
+                            <Text style={styles.Rbtxt}>Assendeing Name</Text>
+                        </View>
+
+
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
                             onPress={() => setModalVisible(!modalVisible)}
                         >
-                            <Text style={styles.textStyle}>Hide Modal</Text>
+                            <Text style={styles.textStyle}>Close</Text>
                         </Pressable>
                     </View>
                 </View>
@@ -365,6 +428,19 @@ export default function Featureds() {
     )
 }
 const styles = StyleSheet.create({
+    Rbtxt: {
+        fontSize: 15
+    },
+    radioButton: {
+        backgroundColor: color.darkBlue,
+        borderRadius: '100%',
+        margin: 10
+    },
+    Rb: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
     centeredView: {
         flex: 1,
         justifyContent: "center",
@@ -391,11 +467,8 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2
     },
-    buttonOpen: {
-        backgroundColor: "#F194FF",
-    },
     buttonClose: {
-        backgroundColor: "#2196F3",
+        backgroundColor: color.darkBlue,
     },
     textStyle: {
         color: "white",
@@ -404,7 +477,9 @@ const styles = StyleSheet.create({
     },
     modalText: {
         marginBottom: 15,
-        textAlign: "center"
+        textAlign: "center",
+        fontSize: 25,
+        fontWeight: 'bold'
     },
     screen: {
         backgroundColor: color.white,
@@ -478,21 +553,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
     },
     view7: {
         alignSelf: 'center',

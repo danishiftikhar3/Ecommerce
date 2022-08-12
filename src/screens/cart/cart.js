@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
-
+import { Swipeable } from 'react-native-gesture-handler';
+import Constants from "expo-constants";
 import StarRating from 'react-native-star-rating';
+
 import color from '../../../constants/color';
 import data from '../../../data/data';
 import HeaderA from '../../components/HeaderA';
 
 
+const RightActions = (progress, dragX) => {
+    return (
+        <>
+
+            <TouchableOpacity style={{
+                justifyContent: 'center',
+                flexDirection: 'row',
+            }} onPress={() => alert('Delete button pressed',)}>
+                <View
+                    style={styles.gestureView}>
+                    <Image style={{ resizeMode: 'contain', height: 40, width: 40, alignSelf: 'center' }} source={require('../../images/del.png')}></Image>
+                </View>
+            </TouchableOpacity>
+
+        </>
+    )
+}
 
 function Cart(props) {
     const [dataA, setDataA] = useState(data);
@@ -40,59 +59,61 @@ function Cart(props) {
 
     return (
 
-        <SafeAreaView>
+        <SafeAreaView style={styles.screen}>
             <HeaderA Title='Cart' />
-
             <View style={{ backgroundColor: 'white' }}>
                 <FlatList
                     data={dataA}
                     renderItem={({ item, index }) => (
-                        <View style={styles.flatlistView}>
-                            <TouchableOpacity style={styles.view3}>
-                                <View style={{ width: '30%' }}>
-                                    <Image source={item.pic} style={styles.img1}></Image>
-                                </View>
-
-                                <View style={styles.view4}>
-                                    <Text style={styles.txt2}>{item.title}</Text>
-                                    <View style={{ width: '20%', marginTop: 4, resizeMode: 'contain', }}>
-                                        <StarRating
-                                            disabled={false}
-                                            maxStars={5}
-                                            rating={item.stars}
-                                            fullStarColor={'orange'}
-                                            starSize={15}
-
-                                        />
-
+                        <Swipeable renderRightActions={RightActions}>
+                            <View style={styles.flatlistView}>
+                                <TouchableOpacity style={styles.view3}>
+                                    <View style={{ flex: 1 }}>
+                                        <Image source={item.pic} style={styles.img1}></Image>
                                     </View>
-                                    <Text style={styles.txt3}>${item.price}</Text>
 
-                                </View>
-                                <View style={{ width: '40%', flexDirection: 'row' }} >
-                                    <View style={styles.view8}>
-                                        <Text style={styles.txt8}>Quantity</Text>
-                                        <View style={styles.view6}>
-                                            <TouchableOpacity onPress={() => decCount(index)} >
-                                                <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../images/minus.png')}></Image>
-                                            </TouchableOpacity>
-                                            <Text style={{ fontSize: 20, alignSelf: 'center', marginTop: -5 }}>  {item.Qty}  </Text>
+                                    <View style={styles.view4}>
+                                        <Text style={styles.txt2}>{item.title}</Text>
+                                        <View style={{ width: '20%', marginTop: 4, resizeMode: 'contain', }}>
+                                            <StarRating
+                                                disabled={false}
+                                                maxStars={5}
+                                                rating={item.stars}
+                                                fullStarColor={'orange'}
+                                                starSize={15}
 
-                                            <TouchableOpacity onPress={() => incrementCount(index)} >
-                                                <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../images/plus.png')}></Image>
-                                            </TouchableOpacity>
-
+                                            />
 
                                         </View>
+                                        <Text style={styles.txt3}>${item.price}</Text>
+
                                     </View>
+                                    <View style={{ flex: 1, flexDirection: 'row' }} >
+                                        <View style={styles.view8}>
+                                            <Text style={styles.txt8}>Quantity</Text>
+                                            <View style={styles.view6}>
+                                                <TouchableOpacity onPress={() => decCount(index)} >
+                                                    <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../images/minus.png')}></Image>
+                                                </TouchableOpacity>
+                                                <Text style={{ fontSize: 20, alignSelf: 'center', marginTop: -5 }}>  {item.Qty}  </Text>
+
+                                                <TouchableOpacity onPress={() => incrementCount(index)} >
+                                                    <Image resizeMode="contain" style={{ width: 20, height: 20, }} source={require('../../images/plus.png')}></Image>
+                                                </TouchableOpacity>
 
 
-                                </View>
-                            </TouchableOpacity>
+                                            </View>
+                                        </View>
+
+
+                                    </View>
+                                </TouchableOpacity>
 
 
 
-                        </View>
+                            </View>
+                        </Swipeable>
+
                     )}
                     keyExtractor={item => item.id}
                     ListFooterComponent={<View style={{ height: 150 }} />}
@@ -106,33 +127,54 @@ function Cart(props) {
 
 export default Cart;
 const styles = StyleSheet.create({
-    view8: {
-        shadowColor: "red",
+    gestureView: {
+        backgroundColor: color.white,
+        borderColor: color.border,
+        justifyContent: 'center',
+        height: 120,
+        alignSelf: 'center',
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderRightWidth: 1,
+        marginRight: 20,
+        width: 80,
+        alignItems: 'flex-end',
+        borderBottomRightRadius: 20,
+        marginTop: 20,
+        borderTopRightRadius: 20,
+        shadowColor: color.border,
         shadowOffset: {
-            width: 0,
-            height: 2,
+            width: 4,
+            height: 4,
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
         elevation: 5,
-        width: 80,
-        justifyContent: 'center',
-        marginLeft: 10,
+    },
+    screen: {
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: color.background
 
+    },
+    view8: {
+        shadowColor: color.border,
+        shadowOffset: {
+            width: 4,
+            height: 4,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        justifyContent: 'center',
         borderRadius: 5,
-        // width: '65%',
-        // marginTop: 10,
         backgroundColor: 'white',
         height: 60,
         justifyContent: 'center',
         alignSelf: 'center',
-        // marginTop: 45
+        flex: 0.9,
     },
     txt8: {
         fontSize: 18,
-        // marginLeft: 5,
-        // fontWeight: 'bold',
         alignSelf: 'center',
 
     },
@@ -143,20 +185,23 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     flatlistView: {
-        justifyContent: 'space-around',
+        justifyContent: 'center',
+        alignSelf: 'center',
         borderWidth: 1,
         height: 120,
-        margin: 25,
         borderColor: color.border,
         borderRadius: 20,
         shadowOffset: {
-            width: 2,
-            height: 2,
+            width: 4,
+            height: 4,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
         elevation: 5,
-        shadowColor: color.border
+        shadowColor: color.border,
+        marginTop: 20,
+        width: '98%'
+
     },
     mainview: {
         borderWidth: 1,
@@ -193,7 +238,7 @@ const styles = StyleSheet.create({
     view3: {
         flexDirection: 'row',
         alignSelf: 'center',
-        width: '90%',
+        width: '100%',
         justifyContent: 'space-around',
 
     },
@@ -205,7 +250,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
     view4: {
-        width: '30%',
+        flex: 1
 
     },
     txt2: {
