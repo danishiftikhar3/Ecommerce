@@ -33,6 +33,19 @@ function Wishlist(props) {
     }
 
 
+    // const handleDelete = (message) => {
+    //     console.log(message.id);
+    //     setMessages(messages.filter((m) => m.id !== data.id));
+    //     console.log(dataA)
+
+    // };
+    var handleDelete = (num) => {
+
+        dataA[num].wishlist = !true
+
+    }
+
+
     return (
 
 
@@ -73,7 +86,7 @@ function Wishlist(props) {
                                         </View>
 
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{ marginTop: 10 }} onPress={() => { this.props.navigation.navigate('cart'); }}>
+                                    <TouchableOpacity style={{ marginTop: 10 }} onPress={() => handleDelete(item)} >
 
                                         <View style={styles.view7}>
                                             <Text style={styles.txt5}>Delete</Text>

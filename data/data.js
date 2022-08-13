@@ -1,4 +1,4 @@
-var data = [
+const data = [
     {
         'id': '01',
         'title': "Mini Denim Shorts",
