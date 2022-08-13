@@ -1,4 +1,4 @@
-const data = [
+var data = [
     {
         'id': '01',
         'title': "Mini Denim Shorts",
@@ -9,8 +9,8 @@ const data = [
         essential: true,
         accessory: false,
         'Qty': 1,
-        wishlist: true,
-        cart: true,
+        wishlist: false,
+        cart: false,
 
     },
     {

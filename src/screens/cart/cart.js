@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, SafeAreaView
 import { Swipeable } from 'react-native-gesture-handler';
 import Constants from "expo-constants";
 import StarRating from 'react-native-star-rating';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import color from '../../../constants/color';
 import data from '../../../data/data';
@@ -28,7 +29,14 @@ const RightActions = (progress, dragX) => {
 }
 
 function Cart(props) {
-    const [dataA, setDataA] = useState(data);
+    const route = useRoute();
+    const navigation = useNavigation();
+
+    var dataB = data.filter(function (el) {
+        return el.cart;
+    });
+
+    const [dataA, setDataA] = useState(dataB);
 
     const [count, setCount] = useState(0);
 
@@ -40,13 +48,13 @@ function Cart(props) {
 
     // Function to increment count by 1
     const incrementCount = (num) => {
-        const arr = data;
+        const arr = dataB;
         let count1 = arr[num].Qty;
         count1 = parseInt(count1) + 1;
         arr[num].Qty = count1;
     };
     const decCount = (num) => {
-        const arr = data;
+        const arr = dataB;
         let count1 = arr[num].Qty;
         if (count1 >= 1) {
             count1 = parseInt(count1) - 1;
@@ -63,7 +71,7 @@ function Cart(props) {
             <HeaderA Title='Cart' />
             <View style={{ backgroundColor: 'white' }}>
                 <FlatList
-                    data={dataA}
+                    data={dataB}
                     renderItem={({ item, index }) => (
                         <Swipeable renderRightActions={RightActions}>
                             <View style={styles.flatlistView}>
@@ -153,7 +161,9 @@ const styles = StyleSheet.create({
     },
     screen: {
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: color.background
+        backgroundColor: color.background,
+        height: '100%',
+        backgroundColor: color.white,
 
     },
     view8: {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -15,18 +15,23 @@ function Wishlist(props) {
     const route = useRoute();
     const navigation = useNavigation();
 
-    var wishlist = []
-    if (typeof route.params !== 'undefined') {
-        const { itemID } = route.params;
-        var aData = data.filter(function (el) {
-            return el.id === itemID;
-        }
-        );
-        var wishlist = [...wishlist, ...aData]
-    } else {
-        var wishlist = []
+    const [count, setCount] = useState(0);
 
-    };
+    useEffect(() => {
+        setTimeout(() => {
+            setCount((count) => count + 1);
+        }, 1);
+    });
+
+    var dataA = data.filter(function (el) {
+        return el.wishlist;
+    });
+    var setCart = (num) => {
+
+        dataA[num].cart = true
+
+    }
+
 
     return (
 
@@ -36,7 +41,7 @@ function Wishlist(props) {
 
             <View style={{ backgroundColor: 'white' }}>
                 <FlatList
-                    data={wishlist}
+                    data={dataA}
                     renderItem={({ item, index }) => (
                         <View style={styles.flatlistView}>
                             <TouchableOpacity style={styles.view3}>
@@ -61,7 +66,7 @@ function Wishlist(props) {
 
                                 </View>
                                 <View style={styles.view9} >
-                                    <TouchableOpacity style={{}} onPress={() => { this.props.navigation.navigate('cart'); }}>
+                                    <TouchableOpacity style={{}} onPress={() => { { setCart(index) } }}>
 
                                         <View style={styles.view7}>
                                             <Text style={styles.txt4}>Add to Bag</Text>

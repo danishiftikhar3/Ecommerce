@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, FlatList } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -10,8 +10,10 @@ import color from '../../../constants/color';
 
 // import { useNavigation } from '@react-navigation/native';
 
+//navigation.navigate('Wishlist', { itemID: item.id })
 
 const starCount = 4.5
+
 
 function Product() {
     const route = useRoute();
@@ -20,9 +22,19 @@ function Product() {
 
     var dataA = data.filter(function (el) {
         return el.id === itemID;
-
     });
-    // console.log(dataA)
+
+    var setWish = (num) => {
+
+        dataA[num].wishlist = true
+
+    }
+    var setCart = (num) => {
+
+        dataA[num].cart = true
+
+    }
+
 
     return (
 
@@ -61,12 +73,12 @@ function Product() {
 
 
                             <View style={styles.footer}>
-                                <TouchableOpacity style={styles.view5} onPress={() => { this.props.navigation.navigate('cart'); }}>
+                                <TouchableOpacity style={styles.view5} onPress={() => { { setCart(index) } }}>
                                     <View >
                                         <Text style={styles.txt4}>Add to Bag</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.view6} onPress={() => navigation.navigate('Wishlist', { itemID: item.id })}>
+                                <TouchableOpacity style={styles.view6} onPress={() => { { setWish(index) } }}>
                                     <View >
                                         <Text style={styles.txt5}>Add to Wishlist</Text>
                                     </View>
