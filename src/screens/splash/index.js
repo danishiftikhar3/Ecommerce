@@ -1,13 +1,27 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground, Dimensions, SafeAreaView } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
 import Constants from "expo-constants";
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+console.log(`h: ${windowHeight}`)
+console.log(`w: ${windowWidth}`)
+
+const abc = () => {
+    if (windowHeight > 800) {
+        return true;
+    } else {
+        return false;
+
+    }
+};
+
+console.log(abc());
+
 
 const slides = [
     {
@@ -60,9 +74,9 @@ function SplashScreen() {
     const RenderItem = ({ item }) => {
         return (
             <View style={styles.mainView}>
-                <ImageBackground style={styles.image} source={item.image} >
+                <ImageBackground source={item.image} style={[(abc()) ? styles.image : styles.image2]}>
                     <View style={styles.testView}>
-                        <Text style={styles.title}>Best Deals</Text>
+                        <Text style={styles.title}>{item.title}</Text>
                     </View>
 
                 </ImageBackground>
@@ -72,9 +86,7 @@ function SplashScreen() {
     const onDone = () => {
         navigation.navigate('TabNav');
     };
-    const onSkip = () => {
-        navigation.navigate('TabNav');
-    };
+
 
 
     return (
@@ -85,7 +97,7 @@ function SplashScreen() {
             renderDoneButton={renderDoneButton}
             renderNextButton={_renderNextButton}
             onDone={onDone}
-            onSkip={onSkip}
+            onSkip={onDone}
 
             showSkipButton={true}
 
@@ -109,19 +121,28 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: Constants.statusBarHeight,
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
 
 
     },
 
     image: {
         flex: 1,
+
+        alignItems: "center",
+        resizeMode: 'cover'
+
+    },
+    image2: {
+        flex: 1,
         width: windowWidth,
         height: windowHeight * 1.5,
         alignItems: "center",
-        resizeMode: 'contain'
+        resizeMode: 'cover'
 
     },
+
+
 
     title: {
         fontSize: 50,
