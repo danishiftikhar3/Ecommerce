@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import AppNavigator from './navigation/AppNavigator'
 
-import StartUpScreen from './src/screens/splash';
+import SplashScreen from './src/screens/splash';
 
 
 

@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Constants from "expo-constants";
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const slides = [
     {
@@ -14,7 +18,7 @@ const slides = [
     },
     {
         key: 's2',
-        title: 'Choose your Food',
+        title: 'Choose your Style',
         image: require('../../images/d2.jpg'),
         backgroundColor: '#febe29',
     },
@@ -25,36 +29,23 @@ const slides = [
         backgroundColor: '#22bcb5',
     },
 
+
 ];
-
-export default class StartUpScreen extends Component {
-    componentDidMount() {
-
-        setTimeout(
-            () => {
-                console.log('hell')
+const _renderNextButton = () => {
+    return (
 
 
-            }, 4000
-        );
-    }
-    constructor(props) {
-        super(props);
-        this.state = {
-            showRealApp: false,
-        };
-    }
-    _renderNextButton = () => {
-        return (
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('s1'); }}>
+        <Image style={styles.img} source={require('../../images/forwardArrow.png')}></Image>
 
-                <View style={styles.buttonCircle}>
-                    <Text>Skip</Text>
-                </View>
-            </TouchableOpacity>
-        );
-    };
-    _renderDoneButton = () => {
+
+    );
+};
+
+function SplashScreen() {
+    const navigation = useNavigation();
+
+
+    const renderDoneButton = () => {
         return (
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('c43'); }}>
 
@@ -66,49 +57,69 @@ export default class StartUpScreen extends Component {
     };
 
 
-    _renderItem = ({ item }) => {
+    const RenderItem = ({ item }) => {
         return (
-            <View style={styles.mainView} data={slides}>
+            <View style={styles.mainView}>
                 <ImageBackground style={styles.image} source={item.image} >
                     <View style={styles.testView}>
-                        <Text style={styles.title}>{item.title}</Text>
+                        <Text style={styles.title}>Best Deals</Text>
                     </View>
 
                 </ImageBackground>
             </View>
         );
     };
-
-    render() {
-
-        return (
-
-            <AppIntroSlider
-                data={slides}
-                renderItem={this._renderItem}
-                renderDoneButton={this._renderDoneButton}
-                renderNextButton={this._renderNextButton}
+    const onDone = () => {
+        navigation.navigate('TabNav');
+    };
+    const onSkip = () => {
+        navigation.navigate('TabNav');
+    };
 
 
-            />
+    return (
+
+        <AppIntroSlider
+            data={slides}
+            renderItem={RenderItem}
+            renderDoneButton={renderDoneButton}
+            renderNextButton={_renderNextButton}
+            onDone={onDone}
+            onSkip={onSkip}
+
+            showSkipButton={true}
 
 
-        );
+        />
 
-    }
+
+    );
+
 }
-const styles = StyleSheet.create({
-    mainView: {
+export default SplashScreen;
 
+const styles = StyleSheet.create({
+    img: {
+        resizeMode: 'contain',
+        width: 60,
+        height: 60,
+        alignSelf: 'center'
+    },
+    mainView: {
+        flex: 1,
+        paddingTop: Constants.statusBarHeight,
+        justifyContent: 'center',
+        alignContent: 'center'
 
 
     },
 
     image: {
         flex: 1,
-        width: "100%",
-        height: 770,
+        width: windowWidth,
+        height: windowHeight * 1.5,
         alignItems: "center",
+        resizeMode: 'contain'
 
     },
 

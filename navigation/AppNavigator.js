@@ -30,6 +30,7 @@ import Featureds from '../src/screens/featured/featured';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Wishlist from '../src/screens/wishlist';
 import Cart from '../src/screens/cart/cart';
+import SplashScreen from '../src/screens/splash';
 
 
 const Stack = createNativeStackNavigator();
@@ -75,6 +76,42 @@ function CustomDrawerContent(props) {
     );
 }
 
+function StackScreenB() {
+    return (
+        <Stack.Navigator initialRouteName='Splash' screenOptions={{ headerShown: false }}>
+
+
+            <Stack.Screen name="Splash" component={SplashScreen} />
+            <Stack.Screen name="StackScreen" component={StackScreen} />
+            <Stack.Screen name="TabNav" component={TabNavigation} />
+
+
+
+
+
+
+        </Stack.Navigator>
+
+    );
+}
+
+function StackScreen() {
+    return (
+        <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Home" component={Home} />
+
+            <Stack.Screen name="Product" component={Product} />
+            <Stack.Screen name="Featureds" component={Featureds} />
+
+
+
+
+
+        </Stack.Navigator>
+
+    );
+}
+
 function TabNavigation() {
     return (
         <SafeAreaProvider>
@@ -115,29 +152,13 @@ function TabNavigation() {
     );
 }
 
-function StackScreen() {
-    return (
-        <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
-
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Product" component={Product} />
-            <Stack.Screen name="Featureds" component={Featureds} />
-
-
-
-
-        </Stack.Navigator>
-
-    );
-}
-
 
 export default function App() {
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />} initialRouteName="Wishlist" screenOptions={{ headerShown: false }}>
-                    <Drawer.Screen name="Homed" component={TabNavigation} />
+                <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />} initialRouteName="StackScreenB" screenOptions={{ headerShown: false }}>
+                    <Drawer.Screen name="StackScreenB" component={StackScreenB} />
 
 
                 </Drawer.Navigator>
