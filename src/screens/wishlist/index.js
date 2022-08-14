@@ -130,14 +130,31 @@ const styles = StyleSheet.create({
         margin: 25,
         borderColor: color.border,
         borderRadius: 20,
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-        shadowColor: color.border
+        ...Platform.select({
+            ios: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+            },
+            android: {
+
+            },
+            default: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+            }
+        }),
     },
     mainview: {
         borderWidth: 1,

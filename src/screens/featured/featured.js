@@ -432,8 +432,19 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     radioButton: {
-        backgroundColor: color.darkBlue,
-        borderRadius: '100%',
+        ...Platform.select({
+            ios: {
+                backgroundColor: color.darkBlue,
+                borderRadius: '100%',
+            },
+            android: {
+            },
+            default: {
+                backgroundColor: color.darkBlue,
+                borderRadius: '100%',
+            }
+        }),
+
         margin: 10
     },
     Rb: {

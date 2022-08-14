@@ -141,23 +141,39 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 120,
         alignSelf: 'center',
-        borderTopWidth: 1,
-        borderBottomWidth: 1,
-        borderRightWidth: 1,
-        marginRight: 20,
+        borderWidth: 1,
+        marginRight: 10,
         width: 80,
         alignItems: 'flex-end',
-        borderBottomRightRadius: 20,
         marginTop: 20,
-        borderTopRightRadius: 20,
-        shadowColor: color.border,
-        shadowOffset: {
-            width: 4,
-            height: 4,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        borderRadius: 20,
+        ...Platform.select({
+            ios: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+
+            },
+            android: {
+                elevation: 5,
+
+            },
+            default: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+            }
+        }),
+
     },
     screen: {
         paddingTop: Constants.statusBarHeight,
@@ -167,17 +183,42 @@ const styles = StyleSheet.create({
 
     },
     view8: {
-        shadowColor: color.border,
-        shadowOffset: {
-            width: 4,
-            height: 4,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        ...Platform.select({
+            ios: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+            },
+            android: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 8,
+            },
+            default: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+            }
+        }),
+
         justifyContent: 'center',
-        borderRadius: 5,
-        backgroundColor: 'white',
+        borderRadius: 20,
+        backgroundColor: color.white,
         height: 60,
         justifyContent: 'center',
         alignSelf: 'center',
@@ -199,16 +240,33 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderWidth: 1,
         height: 120,
-        borderColor: color.border,
         borderRadius: 20,
-        shadowOffset: {
-            width: 4,
-            height: 4,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 4,
-        elevation: 5,
-        shadowColor: color.border,
+        borderColor: color.border,
+        ...Platform.select({
+            ios: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+            },
+            android: {
+
+            },
+            default: {
+                shadowColor: color.border,
+                shadowOffset: {
+                    width: 4,
+                    height: 4,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5,
+            }
+        }),
         marginTop: 20,
         width: '98%'
 
