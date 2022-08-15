@@ -10,29 +10,11 @@ import data from '../../../data/data';
 import HeaderA from '../../components/HeaderA';
 
 
-const RightActions = (progress, dragX) => {
-    return (
-        <>
-
-            <TouchableOpacity style={{
-                justifyContent: 'center',
-                flexDirection: 'row',
-            }} onPress={() => alert('Delete button pressed',)}>
-                <View
-                    style={styles.gestureView}>
-                    <Image style={{ resizeMode: 'contain', height: 40, width: 40, alignSelf: 'center' }} source={require('../../images/del.png')}></Image>
-                </View>
-            </TouchableOpacity>
-
-        </>
-    )
-}
-
 function Cart(props) {
     const route = useRoute();
     const navigation = useNavigation();
 
-    var dataB = data.filter(function (el) {
+    const dataB = data.filter(function (el) {
         return el.cart;
     });
 
@@ -46,6 +28,12 @@ function Cart(props) {
         }, 1);
     });
 
+    const handleDelete = (num) => {
+        dataB[num].cart = false
+
+
+
+    }
     // Function to increment count by 1
     const incrementCount = (num) => {
         const arr = dataB;
@@ -56,7 +44,9 @@ function Cart(props) {
     const decCount = (num) => {
         const arr = dataB;
         let count1 = arr[num].Qty;
-        if (count1 >= 1) {
+        if (count1 < 2) {
+            handleDelete(num);
+        } else {
             count1 = parseInt(count1) - 1;
             arr[num].Qty = count1;
         }
@@ -73,7 +63,15 @@ function Cart(props) {
                 <FlatList
                     data={dataB}
                     renderItem={({ item, index }) => (
-                        <Swipeable renderRightActions={RightActions}>
+                        <Swipeable renderRightActions={() => (<TouchableOpacity style={{
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                        }} onPress={() => handleDelete(index)} >
+                            <View
+                                style={styles.gestureView}>
+                                <Image style={{ resizeMode: 'contain', height: 40, width: 40, alignSelf: 'center' }} source={require('../../images/del.png')}></Image>
+                            </View>
+                        </TouchableOpacity>)}>
                             <View style={styles.flatlistView}>
                                 <TouchableOpacity style={styles.view3}>
                                     <View style={{ flex: 1 }}>

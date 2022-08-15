@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
         // alignSelf: 'baseline',
         justifyContent: 'space-around',
         width: '100%',
+        alignSelf: 'center',
+
 
 
     },
@@ -191,7 +193,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 15,
         borderColor: color.border,
-        borderWidth: 1
+        borderWidth: 1,
+        marginLeft: 10,
+        right: 10
     },
     txt4: {
         color: color.white,
