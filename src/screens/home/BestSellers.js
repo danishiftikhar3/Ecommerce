@@ -76,13 +76,10 @@ export default class BestSellers extends Component {
                         )}
                         numColumns={2}
                         keyExtractor={item => item.id}
+                        ListFooterComponent={<View style={{ height: 150 }} />}
                     />
                 </View>
-                <View style={styles.h32}  >
 
-                    <Image style={styles.i12} source={require('../../images/line1.png')}></Image>
-
-                </View>
             </View>
         )
     }

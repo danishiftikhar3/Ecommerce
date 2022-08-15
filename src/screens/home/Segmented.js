@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import { Text, Dimensions, StyleSheet, View, Image, FlatList, TouchableOpacity, ImageBackground } from 'react-native'
+import { Text, StyleSheet, View, Image, FlatList, TouchableOpacity, ImageBackground } from 'react-native'
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import StarRating from 'react-native-star-rating';
 import color from '../../../constants/color';
 import data from '../../../data/data';
 import { useNavigation } from '@react-navigation/native';
-
-const windowHeight = Dimensions.get('window').height;
 
 
 
@@ -105,8 +103,7 @@ class Segmented extends Component {
                                                 </View>
                                             </ImageBackground>
 
-                                            <View style={styles.lView}>
-
+                                            <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
                                                 <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -157,8 +154,7 @@ class Segmented extends Component {
                                                 </View>
                                             </ImageBackground>
 
-                                            <View style={styles.lView}>
-
+                                            <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
                                                 <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -207,8 +203,7 @@ class Segmented extends Component {
                                                 </View>
                                             </ImageBackground>
 
-                                            <View style={styles.lView}>
-
+                                            <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
                                                 <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -257,8 +252,7 @@ class Segmented extends Component {
                                                 </View>
                                             </ImageBackground>
 
-                                            <View style={styles.lView}>
-
+                                            <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
                                                 <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -307,8 +301,7 @@ class Segmented extends Component {
                                                 </View>
                                             </ImageBackground>
 
-                                            <View style={styles.lView}>
-
+                                            <View style={{ flexDirection: 'row' }}>
                                                 <Text style={styles.txt3b}>${item.price}</Text>
                                                 <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -327,6 +320,12 @@ class Segmented extends Component {
                     }
 
 
+
+
+
+
+
+
                 </View>
 
             </View>
@@ -340,12 +339,6 @@ export default function (props) {
 }
 
 const styles = StyleSheet.create({
-    lView: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '90%', alignSelf: 'center'
-    },
-
     heart: {
         width: 20,
         height: 25,
@@ -354,7 +347,6 @@ const styles = StyleSheet.create({
     },
     flatlistView: {
         marginBottom: 25,
-        height: '100%'
     },
     tabStyle: {
         borderColor: color.white
@@ -406,14 +398,14 @@ const styles = StyleSheet.create({
     img4b: {
         width: 150,
         height: 220,
-        resizeMode: 'cover',
+        resizeMode: 'contain',
         alignSelf: 'center',
         // marginTop: -40,
         flex: 1
 
     },
     view4b: {
-        marginTop: 150,
+        marginTop: 150
     },
     txt3b: {
         fontSize: 16,
