@@ -45,28 +45,31 @@ const slides = [
 
 
 ];
-const _renderNextButton = () => {
-    return (
-
-
-        <Image style={styles.img} source={require('../../images/forwardArrow.png')}></Image>
-
-
-    );
-};
 
 function SplashScreen() {
     const navigation = useNavigation();
 
+    useEffect(() => {
+        setTimeout(() => {
+            (AppIntroSlider.renderNextButton);
+        }, 5000);
+    });
 
     const renderDoneButton = () => {
         return (
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('c43'); }}>
+            <View style={styles.buttonCircle}>
+                <Text>Skip</Text>
+            </View>
+        );
+    };
 
-                <View style={styles.buttonCircle}>
-                    <Text>Skip</Text>
-                </View>
-            </TouchableOpacity>
+    const _renderNextButton = () => {
+        return (
+
+
+            <Image style={styles.img} source={require('../../images/forwardArrow.png')}></Image>
+
+
         );
     };
 
@@ -98,8 +101,8 @@ function SplashScreen() {
             renderNextButton={_renderNextButton}
             onDone={onDone}
             onSkip={onDone}
-
             showSkipButton={true}
+            goToSlide={2}
 
 
         />

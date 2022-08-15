@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, ImageBackground, Modal, SafeAreaView, Pressable } from 'react-native';
+import { View, Dimensions, Text, Image, StyleSheet, FlatList, TouchableOpacity, ImageBackground, Modal, SafeAreaView, Pressable } from 'react-native';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 import SegmentedControlTab from "react-native-segmented-control-tab";
@@ -13,6 +13,8 @@ import data from '../../../data/data';
 import HeaderB from '../../components/HeaderB';
 import color from '../../../constants/color';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 
@@ -103,7 +105,7 @@ export default function Featureds() {
 
                 {customStyleIndex === 0
                     &&
-                    <View style={{ flexGrow: 1 }}>
+                    <View style={{ flexGrow: 1, height: '100%' }}>
                         <View style={styles.flatlistView}>
                             <FlatList
                                 data={data}
@@ -130,7 +132,7 @@ export default function Featureds() {
                                             </View>
                                         </ImageBackground>
 
-                                        <View style={{ flexDirection: 'row' }}>
+                                        <View style={styles.lView}>
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -182,7 +184,8 @@ export default function Featureds() {
                                             </View>
                                         </ImageBackground>
 
-                                        <View style={{ flexDirection: 'row' }}>
+                                        <View style={styles.lView}>
+
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -234,7 +237,8 @@ export default function Featureds() {
                                             </View>
                                         </ImageBackground>
 
-                                        <View style={{ flexDirection: 'row' }}>
+                                        <View style={styles.lView}>
+
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -287,7 +291,8 @@ export default function Featureds() {
                                             </View>
                                         </ImageBackground>
 
-                                        <View style={{ flexDirection: 'row' }}>
+                                        <View style={styles.lView}>
+
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -340,7 +345,8 @@ export default function Featureds() {
                                             </View>
                                         </ImageBackground>
 
-                                        <View style={{ flexDirection: 'row' }}>
+                                        <View style={styles.lView}>
+
                                             <Text style={styles.txt3b}>${item.price}</Text>
                                             <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
@@ -428,6 +434,7 @@ export default function Featureds() {
     )
 }
 const styles = StyleSheet.create({
+    lView: { flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center' },
     Rbtxt: {
         fontSize: 15
     },
@@ -640,14 +647,15 @@ const styles = StyleSheet.create({
     img4b: {
         width: 150,
         height: 220,
-        resizeMode: 'contain',
+        resizeMode: 'cover',
         alignSelf: 'center',
         // marginTop: -40,
-        flex: 1
+        flex: 1,
+        height: '100%'
 
     },
     view4b: {
-        marginTop: 150
+        marginTop: windowHeight * .15,
     },
     txt3b: {
         fontSize: 16,

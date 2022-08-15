@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView, FlatList, Dimensions } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import StarRating from 'react-native-star-rating';
@@ -7,6 +7,10 @@ import HeaderB from '../../components/HeaderB';
 
 import data from '../../../data/data';
 import color from '../../../constants/color';
+import Constants from "expo-constants";
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 // import { useNavigation } from '@react-navigation/native';
 
@@ -38,7 +42,7 @@ function Product() {
 
     return (
 
-        <SafeAreaView style={{ height: '100%', }}>
+        <SafeAreaView style={styles.screen}>
             <HeaderB />
             <View style={styles.flatlistView}>
                 <FlatList
@@ -88,12 +92,13 @@ function Product() {
                     )}
                     numColumns={2}
                     keyExtractor={item => item.id}
+                    ListFooterComponent={<View style={{ height: 150 }} />}
+
                 />
             </View>
-            <ScrollView style={{ flexGrow: 1 }}>
 
 
-            </ScrollView>
+
 
         </SafeAreaView>
     );
@@ -101,6 +106,12 @@ function Product() {
 export default Product;
 
 const styles = StyleSheet.create({
+    screen: {
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: color.background,
+        height: '100%'
+
+    },
     footer: {
         flexDirection: 'row',
         // alignSelf: 'baseline',
@@ -141,7 +152,7 @@ const styles = StyleSheet.create({
     },
     img2: {
         width: "95%",
-        height: 325,
+        height: windowHeight * .4,
         resizeMode: 'contain',
         alignSelf: 'center'
     },

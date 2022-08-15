@@ -43,7 +43,8 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
     screen: {
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: color.background
+        backgroundColor: color.background,
+        height: '100%'
 
     }
 });

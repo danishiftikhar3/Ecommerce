@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const { width: screenWidth } = Dimensions.get('window');
+const windowHeight = Dimensions.get('window').height;
 
 var carouselItems = data.filter(function (el) {
     return el.bestDeal;
@@ -28,9 +29,11 @@ function BestDeals() {
                     // ref={ref => this.carousel = ref}
                     data={carouselItems}
                     sliderWidth={screenWidth}
-                    sliderHeight={screenWidth}
+                    sliderHeight={windowHeight * .30}
                     itemWidth={screenWidth - 180}
                     slideStyle={{ flex: 1 }}
+                    firstItem={1}
+                    inactiveSlideShift={30}
                     renderItem={({ item, index }) => (
                         <View style={styles.item}>
                             <View style={{}}>
@@ -39,33 +42,35 @@ function BestDeals() {
 
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })} >
+                                <View>
                                     <Image source={item.pic} style={styles.img1}></Image>
-                                </TouchableOpacity>
+                                </View>
 
 
                             </View>
-                            <Text style={styles.title}>
-                                {item.title}
-                            </Text>
-                            <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 25 }}>
-                                <StarRating
-                                    disabled={false}
-                                    maxStars={5}
-                                    rating={item.stars}
-                                    fullStarColor={color.star}
-                                    starSize={15}
-                                    starStyle={{}}
+                            <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })} >
+                                <Text style={styles.title}>
+                                    {item.title}
+                                </Text>
+                                <View style={{ width: '10%', marginTop: 4, resizeMode: 'contain', marginLeft: 25 }}>
+                                    <StarRating
+                                        disabled={false}
+                                        maxStars={5}
+                                        rating={item.stars}
+                                        fullStarColor={color.star}
+                                        starSize={15}
+                                        starStyle={{}}
 
-                                />
-                            </View>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10, marginBottom: 10 }}>
-                                <Text style={styles.txt3}>${item.price}</Text>
-                                <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
+                                    />
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10, marginBottom: 10 }}>
+                                    <Text style={styles.txt3}>${item.price}</Text>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Product', { itemID: item.id })}>
 
-                                    <Image style={styles.img5} source={require('../../images/for.png')}></Image>
-                                </TouchableOpacity>
-                            </View>
+                                        <Image style={styles.img5} source={require('../../images/for.png')}></Image>
+                                    </TouchableOpacity>
+                                </View>
+                            </TouchableOpacity>
 
                         </View>
                     )}

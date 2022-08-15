@@ -76,7 +76,6 @@ export default class BestSellers extends Component {
                         )}
                         numColumns={2}
                         keyExtractor={item => item.id}
-                        ListFooterComponent={<View style={{ height: 150 }} />}
                     />
                 </View>
                 <View style={styles.h32}  >

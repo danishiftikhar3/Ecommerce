@@ -53,19 +53,19 @@ function CustomDrawerContent(props) {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => props.navigation.navigate('Featureds')} style={styles.bar}>
                     <View style={styles.inBar} >
-                        <Image source={require('../src/images/home.png')} />
+                        <Image source={require('../src/images/wishlist.png')} />
                     </View>
                     <Text style={styles.txt}>Featured</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => props.navigation.navigate('Wishlist')} style={styles.bar}>
                     <View style={styles.inBar} >
-                        <Image source={require('../src/images/home.png')} />
+                        <Image source={require('../src/images/wishlist.png')} />
                     </View>
                     <Text style={styles.txt}>Wishlist</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => props.navigation.navigate('Cart')} style={styles.bar}>
                     <View style={styles.inBar} >
-                        <Image source={require('../src/images/home.png')} />
+                        <Image source={require('../src/images/cart.png')} />
                     </View>
                     <Text style={styles.txt}>Cart</Text>
                 </TouchableOpacity>
@@ -116,15 +116,15 @@ function TabNavigation() {
     return (
         <SafeAreaProvider>
             <Tab.Navigator screenOptions={{
-                headerShown: false, tabBarStyle: { borderTopLeftRadius: 25, borderTopRightRadius: 25 }, tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: color.white, tabBarActiveBackgroundColor: color.header, tabBarInactiveBackgroundColor: color.header,
+                headerShown: false, tabBarStyle: { borderTopLeftRadius: 25, borderTopRightRadius: 25 }, tabBarActiveTintColor: color.black,
+                tabBarInactiveTintColor: color.white, tabBarActiveBackgroundColor: color.lightBlue, tabBarInactiveBackgroundColor: color.header,
             }}>
                 <Tab.Screen name="Home" component={StackScreen}
                     options={{
                         tabBarLabel: 'Home',
-                        // tabBarActiveTintColor: '#e91e63',
+
                         tabBarColor: '#1397D5',
-                        tabBarIcon: ({ color }) => (<FontAwesome name="home" color={color} size={26} />),
+                        tabBarIcon: () => (<Image source={require('../src/images/home.png')} />),
                     }}
 
                 />
@@ -134,7 +134,7 @@ function TabNavigation() {
                         tabBarColor: 'red',
 
                         tabBarIcon: ({ color }) => (
-                            <FontAwesome name="home" color={color} size={26} />
+                            <Image source={require('../src/images/wishlist.png')} />
                         ),
                     }} />
                 <Tab.Screen name="Cart" component={Cart}
@@ -143,7 +143,7 @@ function TabNavigation() {
                         tabBarColor: 'red',
 
                         tabBarIcon: ({ color }) => (
-                            <FontAwesome name="home" color={color} size={26} />
+                            <Image source={require('../src/images/cart.png')} />
                         ),
                     }} />
             </Tab.Navigator>
