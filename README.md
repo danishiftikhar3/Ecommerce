@@ -11,7 +11,7 @@
 4. To run on iphone simulator (macos only) press i
 5. To run on android simulator press a
 
-**State Manegment:**react-hooks
+**State Manegment:** react-hooks
 
 **Navigation:**
 React Navigation for tab navigator, stack navigator and drawer navigation
