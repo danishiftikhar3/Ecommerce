@@ -19,7 +19,7 @@ React Navigation for tab navigator, stack navigator and drawer navigation
 **Number of screens: 6**
 
 **Libabrires used: **
-Splash Screen Libarary: react-native-app-intro-slider (https://github.com/Jacse/react-native-app-intro-slider)
+ Splash Screen Libarary: react-native-app-intro-slider (https://github.com/Jacse/react-native-app-intro-slider)
 Home Screen Carousel: react-native-snap-carousel (https://github.com/meliorence/react-native-snap-carousel)
 Fetured Screen: react-native-segmented-control-tab (https://www.npmjs.com/package/react-native-segmented-control-tab)
 React Native Paper:https://reactnativepaper.com/
