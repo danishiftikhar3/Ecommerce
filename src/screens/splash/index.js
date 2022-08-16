@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground, Dimensions, SafeAreaView } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
@@ -8,8 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-console.log(`h: ${windowHeight}`)
-console.log(`w: ${windowWidth}`)
+
 
 const abc = () => {
     if (windowHeight > 800) {
@@ -49,11 +48,8 @@ const slides = [
 function SplashScreen() {
     const navigation = useNavigation();
 
-    useEffect(() => {
-        setTimeout(() => {
-            (AppIntroSlider.renderNextButton);
-        }, 5000);
-    });
+
+
 
     const renderDoneButton = () => {
         return (
@@ -89,9 +85,26 @@ function SplashScreen() {
     const onDone = () => {
         navigation.navigate('TabNav');
     };
+    const sli = () => {
+        2
+    }
 
-
-
+    const slider = useRef();
+    useEffect(() => {
+        setTimeout(() => {
+            slider.current.goToSlide(1, true)
+        }, 5000);
+    }), [];
+    useEffect(() => {
+        setTimeout(() => {
+            slider.current.goToSlide(2, true)
+        }, 10000);
+    }), [];
+    useEffect(() => {
+        setTimeout(() => {
+            navigation.navigate('TabNav');
+        }, 15000);
+    }), [];
     return (
 
         <AppIntroSlider
@@ -103,8 +116,9 @@ function SplashScreen() {
             onSkip={onDone}
             showSkipButton={true}
             goToSlide={2}
-
-
+            dotStyle={{ width: 0, height: 0, }}
+            activeDotStyle={{ width: 0, height: 0, }}
+            ref={(ref) => (slider.current = ref)} // the ref
         />
 
 
