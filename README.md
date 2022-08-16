@@ -29,12 +29,12 @@ Components =>
 
 **Splash Screen**
 **Iphone**
-![splash1_Iphone](https://user-images.githubusercontent.com/70110555/184974956-892b4f71-7f4e-4523-badc-692ad19e890b.png)
+<img width="300" alt="splash1_And" src="https://user-images.githubusercontent.com/70110555/184974956-892b4f71-7f4e-4523-badc-692ad19e890b.png">
 ![splash2_Iphone](https://user-images.githubusercontent.com/70110555/184974925-1bae3ef4-6ac2-499c-83a5-bbe85abde049.png)
 ![splash3_Iphone](https://user-images.githubusercontent.com/70110555/184974895-090256ee-9df3-4652-9bb8-fe118398a625.png)
 
 **Android**
-<img width="100" alt="splash1_And" src="https://user-images.githubusercontent.com/70110555/184975144-f1eee213-218a-488d-a2d1-4ddc16fcca97.png">
+<img width="300" alt="splash1_And" src="https://user-images.githubusercontent.com/70110555/184975144-f1eee213-218a-488d-a2d1-4ddc16fcca97.png">
 <img width="100" alt="splash2_And" src="https://user-images.githubusercontent.com/70110555/184975152-265d2816-e62c-4429-8296-d3bbec193163.png">
 <img width="100" alt="splash3_And" src="https://user-images.githubusercontent.com/70110555/184975184-fdf57f55-282c-4b48-aa4d-7e1c6ce135dd.png">
 
