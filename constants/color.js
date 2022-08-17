@@ -6,7 +6,7 @@ export default {
     red: '#ED1C24',
     blue: '#E8F3FD',
     black: '#000000',
-    lightBlue: '#DAECFC',
+    lightBlue: '#83CBED',
     darkBlue: '#153E73',
     star: '#FF7D51'
 }

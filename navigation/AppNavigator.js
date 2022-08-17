@@ -119,7 +119,7 @@ function TabNavigation() {
                 headerShown: false, tabBarStyle: { borderTopLeftRadius: 25, borderTopRightRadius: 25 }, tabBarActiveTintColor: color.black,
                 tabBarInactiveTintColor: color.white, tabBarActiveBackgroundColor: color.lightBlue, tabBarInactiveBackgroundColor: color.header,
             }}>
-                <Tab.Screen name="Home" component={StackScreen}
+                <Tab.Screen name="StackScreen" component={StackScreen}
                     options={{
                         tabBarLabel: 'Home',
 
