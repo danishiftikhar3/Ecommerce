@@ -36,6 +36,7 @@ export default class Home extends React.Component {
                     <Divider title='Best Sellers' />
                     <BestSellers />
                 </ScrollView>
+
             </SafeAreaView>
         );
     }
