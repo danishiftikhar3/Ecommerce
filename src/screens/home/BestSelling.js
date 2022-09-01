@@ -22,7 +22,6 @@ function BestSelling() {
   const dispatch = useDispatch();
 
   const wishlist = (param, id) => {
-    console.log(param);
     if (param) {
       dispatch(wishDel({ id }));
     } else {
