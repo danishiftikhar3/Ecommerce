@@ -18,7 +18,7 @@ import HeaderB from "../../components/HeaderB";
 
 import color from "../../../constants/color";
 import Constants from "expo-constants";
-import { wishChange } from "../../../store/products";
+import { cartAdd, wishAdd, wishDel } from "../../../store/products";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -41,13 +41,6 @@ function Product() {
   });
 
   const dispatch = useDispatch();
-
-  var setWish = (num) => {
-    dataA[num].wishlist = true;
-  };
-  var setCart = (num) => {
-    dataA[num].cart = true;
-  };
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -93,7 +86,7 @@ function Product() {
                 <TouchableOpacity
                   style={styles.view5}
                   onPress={() => {
-                    dispatch(wishChange({ id: itemID }));
+                    dispatch(cartAdd({ id: itemID }));
                   }}
                 >
                   <View>
@@ -103,9 +96,7 @@ function Product() {
                 <TouchableOpacity
                   style={styles.view6}
                   onPress={() => {
-                    {
-                      setWish(index);
-                    }
+                    dispatch(wishAdd({ id: itemID }));
                   }}
                 >
                   <View>

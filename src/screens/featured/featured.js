@@ -22,7 +22,14 @@ import Constants from "expo-constants";
 
 import HeaderB from "../../components/HeaderB";
 import color from "../../../constants/color";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  assendingDataByName,
+  assendingDataByPrice,
+  dessendingDataByPrice,
+  wishAdd,
+  wishDel,
+} from "../../../store/products";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -41,29 +48,15 @@ export default function Featureds() {
   const [modalVisible, setModalVisible] = useState(false);
   const [checked, setChecked] = useState("");
 
-  const assending = () => {
-    data.sort((a, b) => {
-      return a.price - b.price;
-    });
-  };
-  const dessending = () => {
-    data.sort((a, b) => {
-      return b.price - a.price;
-    });
-  };
-  const assendingName = () => {
-    data.sort((a, b) => {
-      let fa = a.title.toLowerCase(),
-        fb = b.title.toLowerCase();
+  const dispatch = useDispatch();
 
-      if (fa < fb) {
-        return -1;
-      }
-      if (fa > fb) {
-        return 1;
-      }
-      return 0;
-    });
+  const wishlist = (param, id) => {
+    console.log(param);
+    if (param) {
+      dispatch(wishDel({ id }));
+    } else {
+      dispatch(wishAdd({ id }));
+    }
   };
   const data = useSelector((state) => state.products);
 
@@ -127,10 +120,21 @@ export default function Featureds() {
                           margin: 10,
                         }}
                       >
-                        <Image
-                          source={require("../../images/heart.png")}
-                          style={styles.heart}
-                        ></Image>
+                        <TouchableOpacity
+                          onPress={() => wishlist(item.wishlist, item.id)}
+                        >
+                          {item.wishlist ? (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart}
+                            ></Image>
+                          ) : (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart1}
+                            ></Image>
+                          )}
+                        </TouchableOpacity>
                       </TouchableOpacity>
 
                       <View style={styles.view4b}>
@@ -197,10 +201,21 @@ export default function Featureds() {
                           margin: 10,
                         }}
                       >
-                        <Image
-                          source={require("../../images/heart.png")}
-                          style={styles.heart}
-                        ></Image>
+                        <TouchableOpacity
+                          onPress={() => wishlist(item.wishlist, item.id)}
+                        >
+                          {item.wishlist ? (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart}
+                            ></Image>
+                          ) : (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart1}
+                            ></Image>
+                          )}
+                        </TouchableOpacity>
                       </TouchableOpacity>
 
                       <View style={styles.view4b}>
@@ -267,10 +282,21 @@ export default function Featureds() {
                           margin: 10,
                         }}
                       >
-                        <Image
-                          source={require("../../images/heart.png")}
-                          style={styles.heart}
-                        ></Image>
+                        <TouchableOpacity
+                          onPress={() => wishlist(item.wishlist, item.id)}
+                        >
+                          {item.wishlist ? (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart}
+                            ></Image>
+                          ) : (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart1}
+                            ></Image>
+                          )}
+                        </TouchableOpacity>
                       </TouchableOpacity>
 
                       <View style={styles.view4b}>
@@ -337,10 +363,21 @@ export default function Featureds() {
                           margin: 10,
                         }}
                       >
-                        <Image
-                          source={require("../../images/heart.png")}
-                          style={styles.heart}
-                        ></Image>
+                        <TouchableOpacity
+                          onPress={() => wishlist(item.wishlist, item.id)}
+                        >
+                          {item.wishlist ? (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart}
+                            ></Image>
+                          ) : (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart1}
+                            ></Image>
+                          )}
+                        </TouchableOpacity>
                       </TouchableOpacity>
 
                       <View style={styles.view4b}>
@@ -407,10 +444,21 @@ export default function Featureds() {
                           margin: 10,
                         }}
                       >
-                        <Image
-                          source={require("../../images/heart.png")}
-                          style={styles.heart}
-                        ></Image>
+                        <TouchableOpacity
+                          onPress={() => wishlist(item.wishlist, item.id)}
+                        >
+                          {item.wishlist ? (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart}
+                            ></Image>
+                          ) : (
+                            <Image
+                              source={require("../../images/heart.png")}
+                              style={styles.heart1}
+                            ></Image>
+                          )}
+                        </TouchableOpacity>
                       </TouchableOpacity>
 
                       <View style={styles.view4b}>
@@ -479,7 +527,7 @@ export default function Featureds() {
                   onPress={() => {
                     setChecked("1"),
                       setModalVisible(!modalVisible),
-                      assending();
+                      dispatch(assendingDataByPrice());
                   }}
                 />
               </View>
@@ -494,7 +542,7 @@ export default function Featureds() {
                   onPress={() => {
                     setChecked("2"),
                       setModalVisible(!modalVisible),
-                      dessending();
+                      dispatch(dessendingDataByPrice());
                   }}
                 />
               </View>
@@ -509,7 +557,7 @@ export default function Featureds() {
                   onPress={() => {
                     setChecked("3"),
                       setModalVisible(!modalVisible),
-                      assendingName();
+                      dispatch(assendingDataByName());
                   }}
                 />
               </View>
@@ -685,6 +733,12 @@ const styles = StyleSheet.create({
     height: 25,
     resizeMode: "contain",
     tintColor: color.red,
+  },
+  heart1: {
+    width: 20,
+    height: 25,
+    resizeMode: "contain",
+    tintColor: color.grey,
   },
   flatlistView: {
     height: "100%",

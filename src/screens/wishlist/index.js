@@ -15,6 +15,7 @@ import StarRating from "react-native-star-rating";
 import color from "../../../constants/color";
 import HeaderA from "../../components/HeaderA";
 import Constants from "expo-constants";
+import { cartAdd, wishDel } from "../../../store/products";
 
 function Wishlist(props) {
   const data = useSelector((state) => state.products);
@@ -36,10 +37,7 @@ function Wishlist(props) {
   var setCart = (num) => {
     dataA[num].cart = true;
   };
-
-  const handleDelete = (num) => {
-    dataA[num].wishlist = false;
-  };
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -79,7 +77,7 @@ function Wishlist(props) {
                     style={{}}
                     onPress={() => {
                       {
-                        setCart(index);
+                        dispatch(cartAdd({ id: item.id }));
                       }
                     }}
                   >
@@ -89,7 +87,9 @@ function Wishlist(props) {
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={{ marginTop: 10 }}
-                    onPress={() => handleDelete(index)}
+                    onPress={() => {
+                      dispatch(wishDel({ id: item.id }));
+                    }}
                   >
                     <View style={styles.view7}>
                       <Text style={styles.txt5}>Delete</Text>
