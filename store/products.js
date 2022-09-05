@@ -12,6 +12,7 @@ const slice = createSlice({
         ...state,
         products: action.payload,
       };
+      console.log(state);
     },
     wishAdd: (state, action) => {
       const index = state.products.findIndex(
